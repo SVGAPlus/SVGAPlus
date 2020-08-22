@@ -1,0 +1,140 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+    <script src="/static/lib/promise.auto.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .size-ruler {
+        width: 100vw;
+        max-width: 450px;
+        height: 195vw;
+        max-height: 768px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+      }
+
+      canvas {
+        position: absolute;
+        transition: all cubic-bezier(0.14, 0.62, 0.33, 0.93) .7s;
+      }
+
+      #background {
+        width: 102%;
+        height: 110%;
+        left: 0;
+        top: 0;
+      }
+
+      #hex {
+        opacity: .5;
+      }
+
+      #hex.focus {
+        -webkit-transform: translate(-25%, 0) scale(1.3);
+        transform: translate(-25%, 0) scale(1.3);
+      }
+
+      #sprite-22 {
+        max-height: 100%;
+        left: 0;
+        top: 0;
+        -webkit-transform: translate(-40%, 0);
+        transform: translate(-40%, 0);
+      }
+
+      #sprite-22.focus {
+        left: 50%;
+        -webkit-transform: translate(-50%, 0) scale(1.1);
+        transform: translate(-50%, 0) scale(1.1);
+      }
+
+      #text-22 {
+        width: 55%;
+        left: -15%;
+        top: 30%;
+      }
+
+      #text-22.exit {
+        -webkit-transform: translate(-50%, 0) scale(0) !important;
+        transform: translate(-50%, 0) scale(0) !important;
+        transition-duration: .3s;
+      }
+
+      #text-22.focus {
+        left: 50% !important;
+        -webkit-transform: translate(-50%, 0) scale(1.1);
+        transform: translate(-50%, 0) scale(1.1);
+      }
+
+      #sprite-33 {
+        max-height: 100%;
+        left: 100%;
+        top: 0;
+        -webkit-transform: translate(-65%, 0);
+        transform: translate(-65%, 0);
+      }
+
+      #sprite-33.exit {
+        left: 100%;
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+      }
+
+      #text-33 {
+        width: 55%;
+        left: 60%;
+        top: 30%;
+      }
+
+      #text-33.exit {
+        left: 100%;
+      }
+
+      #explosion {
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%) scale(0);
+        transform: translate(-50%, -50%) scale(0);
+        transition: none;
+      }
+
+      #explosion.display {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      #action-area {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="size-ruler">
+      <canvas id="background"></canvas>
+      <canvas id="hex"></canvas>
+
+      <canvas id="sprite-22"></canvas>
+      <canvas id="text-22"></canvas>
+
+      <canvas id="sprite-33"></canvas>
+      <canvas id="text-33"></canvas>
+
+      <canvas id="explosion"></canvas>
+
+      <div id="action-area"></div>
+    </div>
+  </body>
+</html>

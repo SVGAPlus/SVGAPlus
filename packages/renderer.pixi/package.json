@@ -1,0 +1,44 @@
+{
+  "name": "@svgaplus/renderer.pixi",
+  "version": "1.0.1",
+  "description": "SVGAPlus pixi.js renderer.",
+  "main": "dist/index.js",
+  "files": [
+    "dist/",
+    "types/",
+    "index.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "webpack --config ./build/webpack.build.js",
+    "prepublish": "npm run build"
+  },
+  "keywords": [
+    "SVGA",
+    "SVGAPlayer",
+    "SVGAPlus",
+    "Renderer",
+    "PIXI.js"
+  ],
+  "author": {
+    "name": "LancerComet",
+    "email": "chw644@hotmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/preset-env": "7.4.5",
+    "babel-loader": "8.0.6",
+    "cross-env": "6.0.3",
+    "css-loader": "2.1.1",
+    "friendly-errors-webpack-plugin": "1.7.0",
+    "html-webpack-plugin": "3.2.0",
+    "pixi.js": "^5.3.3",
+    "terser-webpack-plugin": "^4.1.0",
+    "ts-loader": "5.4.3",
+    "tslint": "5.20.1",
+    "typescript": "3.7.4",
+    "webpack": "4.41.4",
+    "webpack-cli": "3.3.10"
+  }
+}

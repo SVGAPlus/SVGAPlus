@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="/static/lib/promise.auto.min.js"></script>
+    <style>
+      canvas {
+        background-color: #000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="margin: 10px 0">
+      <h3>Select SVGA File</h3>
+      <input type="file" id="file-upload" accept=".svga">
+      <button id="replay-btn">Replay</button>
+    </div>
+
+    <div style="display: flex">
+      <div>
+        <h3>VanillaRenderer</h3>
+        <p>VanillaRenderer uses vanilla api to render graphics.</p>
+        <canvas id="stage" width="500" height="500"></canvas>
+      </div>
+
+      <div style="margin-left: 10px">
+        <h3>PixiRenderer</h3>
+        <p>PixiRenderer uses pixi.js to render graphics.</p>
+        <canvas id="stage-pixi" width="500" height="500"></canvas>
+      </div>
+    </div>
+  </body>
+</html>
