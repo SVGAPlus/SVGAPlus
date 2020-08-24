@@ -68,7 +68,7 @@ await player.init()
 
 // Set your favourite filters.
 // Do this process after "init".
-player.renderer.filters = [
+player.renderer.pixiContainer.filters = [
   new Filters.RGBSplitFilter()
 ]
 ```

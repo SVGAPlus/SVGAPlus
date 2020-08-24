@@ -219,12 +219,12 @@ class SVGAPlus {
     // Tick to target frame manually when paused.
     const isNotPlaying = !this._isDestroyed && !this.isInPlay
     if (isNotPlaying) {
-      // Render in next tick to make the currentFrame is current.
+      // Render in next tick to make the currentFrame is correct.
       // If this were run in sync, "this.frame" would be incorrect.
-      // For example:
+      // Take a look:
       // ```ts
       // svga.seek(5)
-      // console.log(svga.frame)  // 6, no raf.
+      // console.log(svga.frame)  // 6, exec in sync.
       // console.log(svga.frame)  // 5, exec using raf.
       // ```
       raf(() => {

@@ -7,7 +7,7 @@ class SVGAImageController {
   private _imageCache: { [imageKey: string]: HTMLImageElement } = {}
 
   /**
-   * Get SVGA's sprite image.
+   * Get SVGA sprite image.
    *
    * @param imageKey
    */
