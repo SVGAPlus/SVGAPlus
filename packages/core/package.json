@@ -9,7 +9,7 @@
     "build:normal": "webpack --config ./build/webpack.build.js",
     "build:worker": "cross-env IS_WORKER_BUILD=true webpack --config ./build/webpack.build.js",
     "build": "npm run build:normal & npm run build:worker",
-    "pb": "npx pbf ./src/proto/svga.proto > ./src/core/proto/svga.proto.js",
+    "pb": "npx pbf ./src/proto/svga.proto > ./src/proto/svga.proto.js",
     "test": "jest"
   },
   "keywords": [
