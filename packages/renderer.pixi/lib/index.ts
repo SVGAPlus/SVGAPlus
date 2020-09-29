@@ -1,10 +1,9 @@
 import * as PIXI from 'pixi.js'
 import { BaseTexture, Container, Texture } from 'pixi.js'
 
-import { drawEllipse, drawSvg } from '../../core/src/core/draw'
+import { drawEllipse, drawSvg, setFillStyle, setStrokeStyle } from '../../core/src/core/draw'
 import { ISVGAPlusRendererTickFrameParam } from '../../core/src/core/models/renderer'
 import { SVGAPlusRenderer } from '../../core/src/core/models/renderer'
-import { setFillStyle, setStrokeStyle } from '../../core/src/core/modules/canvas'
 import { SVGAImageController } from '../../core/src/core/modules/controller.image'
 import { SvgaPlayController } from '../../core/src/core/modules/controller.play'
 import { EventBus } from '../../core/src/core/modules/event-bus'
