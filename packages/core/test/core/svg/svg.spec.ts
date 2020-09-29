@@ -1,4 +1,4 @@
-import { svgCommandsToSvgPath, svgPathToCommands } from '../../../src/core/modules/svg'
+import { svgCommandsToSvgPath, svgPathToCommands } from '../../../src/core/svg/svg-command'
 
 describe('Svg testing.', () => {
   it('svgPathToCommands.', () => {

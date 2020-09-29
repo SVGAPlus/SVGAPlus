@@ -27,11 +27,23 @@ module.exports = {
           options: {
             presets: [
               [
-                '@babel/preset-env',
-                {
-                  "targets": {
-                    "ie": "11"
-                  }
+                '@babel/preset-env', {
+                  useBuiltIns: 'entry',
+                  modules: 'auto',
+                  loose: false,
+                  corejs: {
+                    version: 3,
+                    proposals: true
+                  },
+                  targets: [
+                    "last 3 Chrome major versions",
+                    "last 2 Firefox major versions",
+                    "last 2 Safari major versions",
+                    "last 2 Edge major versions",
+                    "last 1 IE major versions",
+                    "last 3 ChromeAndroid major versions",
+                    "last 2 iOS major versions"
+                  ]
                 }
               ]
             ]

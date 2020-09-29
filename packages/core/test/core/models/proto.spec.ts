@@ -1,4 +1,4 @@
-import { IProtoLineCap, IProtoLineJoin, IProtoShapeType } from '../../../src/core/models/proto'
+import { IProtoLineCap, IProtoLineJoin, IProtoShapeType } from '../../../src/proto/models'
 
 describe('proto testing.', () => {
   it('IProtoShapeType must be correct.', () => {

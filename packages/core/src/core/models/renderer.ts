@@ -1,7 +1,7 @@
+import { IProtoMovieEntity } from '../../proto/models'
 import { SVGAImageController } from '../modules/controller.image'
 import { SvgaPlayController } from '../modules/controller.play'
 import { EventBus } from '../modules/event-bus'
-import { IProtoMovieEntity } from './proto'
 
 class SVGAPlusRenderer {
   startTick: () => void

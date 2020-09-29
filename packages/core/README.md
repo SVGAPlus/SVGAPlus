@@ -1,5 +1,7 @@
 # SVGAPlus
 
+[![SVGAPlus](https://github.com/SVGAPlus/SVGAPlus/workflows/Test/badge.svg)](https://github.com/SVGAPlus/SVGAPlus/actions)
+
 ![logo](https://static.lancercomet.com/lancercomet/misc/svgaplus-logo.png)
 
 Enhanced SVGA Player for Web.

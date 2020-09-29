@@ -32,6 +32,7 @@ export enum IProtoLineJoin {
 }
 
 export interface IProtoShapeEntity {
+  args: string
   type: IProtoShapeType
 
   shape?: {
