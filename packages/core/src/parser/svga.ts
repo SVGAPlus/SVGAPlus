@@ -1,4 +1,4 @@
-import { IProtoMovieEntity } from '../core/models/proto'
+import { IProtoMovieEntity } from '../proto/models'
 
 abstract class SVGAParser {
   static parse (svgaBuffer: ArrayBuffer): Promise<IProtoMovieEntity> {
@@ -24,12 +24,12 @@ abstract class SVGAParser {
       }
 
       if (!!process.env.IS_WORKER_BUILD === false) {
-        const { MovieEntity } = require('../proto/svga')
+        const { decodeMovieEntity } = require('../proto/svga')
         const { Inflate } = require('../lib/zlib.js')
         try {
           const inflate = new Inflate(bufferArray)
           const buffer = inflate.decompress()
-          const movieEntity = MovieEntity.decode(buffer) as IProtoMovieEntity
+          const movieEntity = decodeMovieEntity(buffer)
           resolve(movieEntity)
         } catch (error) {
           reject(error)

@@ -9,7 +9,7 @@
     "build:normal": "webpack --config ./build/webpack.build.js",
     "build:worker": "cross-env IS_WORKER_BUILD=true webpack --config ./build/webpack.build.js",
     "build": "npm run build:normal & npm run build:worker",
-    "pb": "npx pbjs -t json src/proto/svga.proto > ./src/core/proto/bundle.json",
+    "pb": "npx pbf ./src/proto/svga.proto > ./src/core/proto/svga.proto.js",
     "test": "jest"
   },
   "keywords": [
@@ -40,8 +40,8 @@
     "html-webpack-plugin": "3.2.0",
     "jest": "25.4.0",
     "jest-github-actions-reporter": "^1.0.2",
+    "pbf": "^3.2.1",
     "pixi.js": "^5.3.3",
-    "protobufjs": "6.8.8",
     "terser-webpack-plugin": "^4.1.0",
     "ts-jest": "25.4.0",
     "ts-loader": "5.4.3",

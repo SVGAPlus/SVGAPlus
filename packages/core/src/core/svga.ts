@@ -1,5 +1,5 @@
 import { SVGAParser } from '../parser/svga'
-import { IProtoMovieEntity } from './models/proto'
+import { IProtoMovieEntity } from '../proto/models'
 import { SVGAPlusRenderer } from './models/renderer'
 import { SVGAImageController } from './modules/controller.image'
 import { SvgaPlayController } from './modules/controller.play'

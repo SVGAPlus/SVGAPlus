@@ -4,7 +4,7 @@ import {
   IProtoShapeEntity,
   IProtoShapeType,
   IProtoSpriteEntity
-} from '../models/proto'
+} from '../../proto/models'
 import { SVGAPlusRenderer } from '../models/renderer'
 import { ISvgCommand } from '../models/svg'
 import { setFillStyle, setStrokeStyle } from '../modules/canvas'

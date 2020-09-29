@@ -1,12 +1,12 @@
-import * as protobuf from 'protobufjs/light'
+import Pbf from 'pbf'
+import { IProtoMovieEntity } from './models'
+import * as Protos from './svga.proto.js'
 
-// tslint:disable-next-line:no-var-requires
-const json = require('./bundle.json')
-const proto = protobuf.Root.fromJSON(json)
-
-// tslint:disable-next-line:variable-name
-const MovieEntity = proto.lookupType('com.opensource.svga.MovieEntity')
+function decodeMovieEntity (buffer: ArrayBuffer): IProtoMovieEntity {
+  const pbf = new Pbf(buffer)
+  return Protos.MovieEntity.read(pbf) as IProtoMovieEntity
+}
 
 export {
-  MovieEntity
+  decodeMovieEntity
 }
