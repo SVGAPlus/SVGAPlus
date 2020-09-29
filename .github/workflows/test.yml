@@ -5,7 +5,7 @@ name: Test
 on: [push, pull_request]
 
 jobs:
-  test:
+  test-core-package:
     runs-on: ubuntu-latest
 
     strategy:
@@ -13,16 +13,24 @@ jobs:
         node-version: [12.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      - run: npm ci
-      - run: npm run build --if-present
+      - name: Step into directory
+        run: cd packages/core
+
+      - name: Test core package
+        run: npm ci
+
+      - name: build
+        run: npm run build --if-present
         env:
           CI: true
 
-      - run: npm test
+      - name: Run test
+        run: npm test
