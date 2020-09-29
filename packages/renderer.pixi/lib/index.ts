@@ -1,14 +1,14 @@
 import * as PIXI from 'pixi.js'
 import { BaseTexture, Container, Texture } from 'pixi.js'
 
+import { drawEllipse, drawSvg, setFillStyle, setStrokeStyle } from '../../core/src/core/draw'
 import { ISVGAPlusRendererTickFrameParam } from '../../core/src/core/models/renderer'
 import { SVGAPlusRenderer } from '../../core/src/core/models/renderer'
-import { ISvgCommand } from '../../core/src/core/models/svg'
-import { setFillStyle, setStrokeStyle } from '../../core/src/core/modules/canvas'
 import { SVGAImageController } from '../../core/src/core/modules/controller.image'
 import { SvgaPlayController } from '../../core/src/core/modules/controller.play'
 import { EventBus } from '../../core/src/core/modules/event-bus'
-import { svgPathToCommands } from '../../core/src/core/modules/svg'
+import { svgPathToCommands } from '../../core/src/core/svg/svg-command'
+import { ISvgCommand } from '../../core/src/core/svg/svg-command'
 import { SVGAUtils } from '../../core/src/core/utils'
 import { raf } from '../../core/src/core/utils/raf'
 import { TypeUtils } from '../../core/src/core/utils/type'
@@ -133,9 +133,7 @@ class PixiRenderer implements SVGAPlusRenderer {
         if (typeof context.ellipse === 'function') {
           setStrokeStyle(context, drawingShape)
           setFillStyle(context, drawingShape)
-
-          const { ellipse } = drawingShape
-          context.ellipse(ellipse.x, ellipse.y, ellipse.radiusX, ellipse.y, 0, 0, 0)
+          drawEllipse(context, shapeEntity)
         }
         break
       }
@@ -357,102 +355,4 @@ class PixiRenderer implements SVGAPlusRenderer {
 
 export {
   PixiRenderer
-}
-
-function drawSvg (
-  context: CanvasRenderingContext2D,
-  shapeEntity: IProtoShapeEntity,
-  svgCommands: ISvgCommand[],
-  doFill: boolean,
-  doStroke: boolean
-) {
-  context.save()
-  context.beginPath()
-  let lastPosition = [0, 0]
-  let pointOne = [0, 0]
-  let pointTwo = [0, 0]
-  for (const command of svgCommands) {
-    const marker = command.marker
-    switch (marker) {
-      case 'z':
-      case 'Z':
-        lastPosition = [0, 0]
-        context.closePath()
-        break
-
-      case 'm':
-        lastPosition = [lastPosition[0] + command.values[0], lastPosition[1] + command.values[1]]
-        context.moveTo(lastPosition[0], lastPosition[1])
-        break
-
-      case 'M':
-        lastPosition = [command.values[0], command.values[1]]
-        context.moveTo(lastPosition[0], lastPosition[1])
-        break
-
-      case 'l':
-        lastPosition = [lastPosition[0] + command.values[0], lastPosition[1] + command.values[1]]
-        context.lineTo(lastPosition[0], lastPosition[1])
-        break
-
-      case 'L':
-        lastPosition = [command.values[0], command.values[1]]
-        context.lineTo(lastPosition[0], lastPosition[1])
-        break
-
-      case 'h':
-        lastPosition = [lastPosition[0] + command.values[0], lastPosition[1]]
-        context.lineTo(lastPosition[0], lastPosition[1])
-        break
-
-      case 'H':
-        lastPosition = [command.values[0], lastPosition[1]]
-        context.lineTo(lastPosition[0], lastPosition[1])
-        break
-
-      case 'v':
-        lastPosition = [lastPosition[0], lastPosition[1] + command.values[0]]
-        context.lineTo(lastPosition[0], lastPosition[1])
-        break
-
-      case 'V':
-        lastPosition = [lastPosition[0], command.values[0]]
-        context.lineTo(lastPosition[0], lastPosition[1])
-        break
-
-      case 'c':
-        pointOne = [lastPosition[0] + command.values[0], lastPosition[1] + command.values[1]]
-        pointTwo = [lastPosition[0] + command.values[2], lastPosition[1] + command.values[3]]
-        lastPosition = [lastPosition[0] + command.values[4], lastPosition[1] + command.values[5]]
-        context.bezierCurveTo(
-          pointOne[0], pointOne[1],
-          pointTwo[0], pointTwo[1],
-          lastPosition[0], lastPosition[1]
-        )
-        break
-
-      case 'C':
-        pointOne = [command.values[0], command.values[1]]
-        pointTwo = [command.values[2], command.values[3]]
-        lastPosition = [command.values[4], command.values[5]]
-        context.bezierCurveTo(
-          pointOne[0], pointOne[1],
-          pointTwo[0], pointTwo[1],
-          lastPosition[0], lastPosition[1]
-        )
-        break
-    }
-  }
-
-  if (doFill) {
-    setFillStyle(context, shapeEntity)
-    context.fill()
-  }
-
-  if (doStroke) {
-    setStrokeStyle(context, shapeEntity)
-    context.stroke()
-  }
-
-  context.restore()
 }
