@@ -1,9 +1,9 @@
-import { IProtoMovieEntity } from '../core/models/proto'
+import { IProtoMovieEntity } from '../proto/models'
 
 const ctx: Worker = self as any
 
 ctx.addEventListener('message', event => {
-  const { MovieEntity } = require('../proto/svga')
+  const { decodeMovieEntity } = require('../proto/svga')
   const { Inflate } = require('../lib/zlib.js')
   const bufferArray = event.data as Uint8Array
 
@@ -12,7 +12,7 @@ ctx.addEventListener('message', event => {
   try {
     const inflate = new Inflate(bufferArray)
     const plainBuffer = inflate.decompress() as Uint8Array
-    movieEntity = MovieEntity.decode(plainBuffer) as IProtoMovieEntity
+    movieEntity = decodeMovieEntity(plainBuffer)
 
     // All these props were assigned to prototype.
     // And these props gonna be lost after being sent to main thread.

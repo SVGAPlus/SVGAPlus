@@ -1,4 +1,4 @@
-import { IProtoLineCap, IProtoLineJoin, IProtoShapeEntity } from '../models/proto'
+import { IProtoLineCap, IProtoLineJoin, IProtoShapeEntity } from '../../proto/models'
 import { SVGAUtils } from '../utils'
 
 const IS_IE = SVGAUtils.isIe()

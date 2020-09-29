@@ -1,3 +1,5 @@
+import 'core-js'
+
 import { PixiRenderer } from '../../../renderer.pixi/lib'
 import { SVGAPlus } from '../../src'
 import { randomNumber, sleep } from './utils'
