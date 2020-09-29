@@ -11,13 +11,14 @@ import { caf, raf } from '../utils/raf'
  */
 
 const IS_PERFORMANCE_AVAILABLE = typeof window.performance?.now === 'function'
-const createTs = () => {
-  return IS_PERFORMANCE_AVAILABLE
-    ? Math.round(window.performance.now())  // See *1.
-    : Date.now()
-}
 
 class Ticker {
+  private static createTs (): number {
+    return IS_PERFORMANCE_AVAILABLE
+      ? Math.round(window.performance.now())  // See *1.
+      : Date.now()
+  }
+
   private readonly _fps: number = 0
   private readonly _msPerFrame: number = 0
   private _isStart: boolean = false
@@ -31,7 +32,7 @@ class Ticker {
     }
 
     if (typeof this._onTick === 'function') {
-      const ts = createTs()
+      const ts = Ticker.createTs()
       if (ts - this._lastFrameTs >= this._msPerFrame) {
         this._onTick()
         this._lastFrameTs = ts

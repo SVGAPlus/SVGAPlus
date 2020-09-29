@@ -1,5 +1,3 @@
-import { ISvgCommand } from '../models/svg'
-
 const markerRegEx = /[MmLlSsQqLlHhVvCcSsQqTtAaZz]/g
 const digitRegEx = /-?[0-9]*\.?\d+/g
 
@@ -50,7 +48,13 @@ function svgCommandsToSvgPath (commands: ISvgCommand[]): string {
     .trim()
 }
 
+interface ISvgCommand {
+  marker: string
+  values: number[]
+}
+
 export {
   svgCommandsToSvgPath,
-  svgPathToCommands
+  svgPathToCommands,
+  ISvgCommand
 }

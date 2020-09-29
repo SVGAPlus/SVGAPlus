@@ -12,7 +12,35 @@ function setStrokeStyle (
     return
   }
 
-  const { stroke, lineCap, lineJoin, strokeWidth, miterlimit } = styles
+  const {
+    stroke, lineCap, lineJoin, strokeWidth, miterlimit,
+    lineDashI: lineDash,
+    lineDashII: lineDashGap,
+    lineDashIII: lineDashOffset
+  } = styles
+
+  const lineDashArgs: number[] = []
+  if (lineDash > 0) {
+    lineDashArgs.push(lineDash)
+  }
+
+  if (lineDashGap > 0) {
+    if (!lineDashArgs.length) {
+      lineDashArgs.push(0)
+    }
+    lineDashArgs.push(lineDashGap)
+    lineDashArgs.push(0)
+  }
+
+  if (lineDashOffset > 0) {
+    if (lineDashArgs.length < 2) {
+      lineDashArgs.push(0)
+      lineDashArgs.push(0)
+    }
+    lineDash[2] = lineDashOffset
+  }
+
+  lineDashArgs.length === 3 && context.setLineDash(lineDashArgs)
 
   switch (lineCap) {
     case IProtoLineCap.Butt:
@@ -60,13 +88,7 @@ function setFillStyle (
   context: CanvasRenderingContext2D,
   shapeEntity: IProtoShapeEntity
 ) {
-  const { styles } = shapeEntity
-  if (!styles) {
-    return
-  }
-
-  const { fill } = styles
-
+  const fill = shapeEntity.styles?.fill
   if (fill) {
     // Some of these color value would be lost when decoding movieEntity in worker.
     // It seems like giving it a fallback value "0" would fix this wired issue.
