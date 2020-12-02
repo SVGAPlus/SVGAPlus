@@ -1,19 +1,17 @@
-use std::fs::File;
-
 extern crate wasm_bindgen;
-extern crate protobuf;
+extern crate bincode;
+extern crate serde;
 
-use wasm_bindgen::prelude::*;
-use protobuf::{
-  Message, parse_from_bytes, ProtobufResult
-};
-
-use crate::svga::{
-  MovieEntity, file_descriptor_proto
-};
-
-mod svga;
 mod lib_test;
+mod svga;
+
+use std::fs::File;
+use std::mem;
+use wasm_bindgen::prelude::*;
+use std::convert::TryFrom;
+use svga::{
+  MovieEntity
+};
 
 #[wasm_bindgen]
 extern {
@@ -29,7 +27,7 @@ macro_rules! console_log {
 
 // #[wasm_bindgen]
 pub fn decode(bytes: &[u8]) -> MovieEntity {
-  let movie = parse_from_bytes::<MovieEntity>(bytes)
-    .expect("failed to parse movie entity");
+  let movie: MovieEntity = bincode::deserialize(bytes)
+    .expect("failed to deserialize MovieEntity");
   return movie;
 }
