@@ -24,7 +24,6 @@
 // const _PROTOBUF_VERSION_CHECK: () = ::protobuf::VERSION_2_18_1;
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct MovieParams {
     // message fields
     pub viewBoxWidth: f32,
@@ -32,9 +31,7 @@ pub struct MovieParams {
     pub fps: i32,
     pub frames: i32,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -284,16 +281,13 @@ impl ::protobuf::reflect::ProtobufValue for MovieParams {
 }
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct SpriteEntity {
     // message fields
     pub imageKey: ::std::string::String,
     pub frames: ::protobuf::RepeatedField<FrameEntity>,
     pub matteKey: ::std::string::String,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -334,7 +328,7 @@ impl SpriteEntity {
         ::std::mem::replace(&mut self.imageKey, ::std::string::String::new())
     }
 
-    // repeated .com.opensource.svga.FrameEntity frames = 2;
+    // repeated .FrameEntity frames = 2;
 
 
     pub fn get_frames(&self) -> &[FrameEntity] {
@@ -537,7 +531,6 @@ impl ::protobuf::reflect::ProtobufValue for SpriteEntity {
 }
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct AudioEntity {
     // message fields
     pub audioKey: ::std::string::String,
@@ -546,9 +539,7 @@ pub struct AudioEntity {
     pub startTime: i32,
     pub totalTime: i32,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -839,7 +830,6 @@ impl ::protobuf::reflect::ProtobufValue for AudioEntity {
 }
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Layout {
     // message fields
     pub x: f32,
@@ -847,9 +837,7 @@ pub struct Layout {
     pub width: f32,
     pub height: f32,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -1099,7 +1087,6 @@ impl ::protobuf::reflect::ProtobufValue for Layout {
 }
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct Transform {
     // message fields
     pub a: f32,
@@ -1109,9 +1096,7 @@ pub struct Transform {
     pub tx: f32,
     pub ty: f32,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -1429,7 +1414,6 @@ impl ::protobuf::reflect::ProtobufValue for Transform {
 }
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct ShapeEntity {
     // message fields
     pub field_type: ShapeEntity_ShapeType,
@@ -1438,9 +1422,7 @@ pub struct ShapeEntity {
     // message oneof groups
     pub args: ::std::option::Option<ShapeEntity_oneof_args>,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -1451,7 +1433,6 @@ impl<'a> ::std::default::Default for &'a ShapeEntity {
 }
 
 #[derive(Clone,PartialEq,Debug)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub enum ShapeEntity_oneof_args {
     shape(ShapeEntity_ShapeArgs),
     rect(ShapeEntity_RectArgs),
@@ -1463,7 +1444,7 @@ impl ShapeEntity {
         ::std::default::Default::default()
     }
 
-    // .com.opensource.svga.ShapeEntity.ShapeType type = 1;
+    // .ShapeEntity.ShapeType type = 1;
 
 
     pub fn get_field_type(&self) -> ShapeEntity_ShapeType {
@@ -1478,7 +1459,7 @@ impl ShapeEntity {
         self.field_type = v;
     }
 
-    // .com.opensource.svga.ShapeEntity.ShapeArgs shape = 2;
+    // .ShapeEntity.ShapeArgs shape = 2;
 
 
     pub fn get_shape(&self) -> &ShapeEntity_ShapeArgs {
@@ -1527,7 +1508,7 @@ impl ShapeEntity {
         }
     }
 
-    // .com.opensource.svga.ShapeEntity.RectArgs rect = 3;
+    // .ShapeEntity.RectArgs rect = 3;
 
 
     pub fn get_rect(&self) -> &ShapeEntity_RectArgs {
@@ -1576,7 +1557,7 @@ impl ShapeEntity {
         }
     }
 
-    // .com.opensource.svga.ShapeEntity.EllipseArgs ellipse = 4;
+    // .ShapeEntity.EllipseArgs ellipse = 4;
 
 
     pub fn get_ellipse(&self) -> &ShapeEntity_EllipseArgs {
@@ -1625,7 +1606,7 @@ impl ShapeEntity {
         }
     }
 
-    // .com.opensource.svga.ShapeEntity.ShapeStyle styles = 10;
+    // .ShapeEntity.ShapeStyle styles = 10;
 
 
     pub fn get_styles(&self) -> &ShapeEntity_ShapeStyle {
@@ -1658,7 +1639,7 @@ impl ShapeEntity {
         self.styles.take().unwrap_or_else(|| ShapeEntity_ShapeStyle::new())
     }
 
-    // .com.opensource.svga.Transform transform = 11;
+    // .Transform transform = 11;
 
 
     pub fn get_transform(&self) -> &Transform {
@@ -1937,14 +1918,11 @@ impl ::protobuf::reflect::ProtobufValue for ShapeEntity {
 }
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct ShapeEntity_ShapeArgs {
     // message fields
     pub d: ::std::string::String,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -2099,7 +2077,6 @@ impl ::protobuf::reflect::ProtobufValue for ShapeEntity_ShapeArgs {
 }
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct ShapeEntity_RectArgs {
     // message fields
     pub x: f32,
@@ -2108,9 +2085,7 @@ pub struct ShapeEntity_RectArgs {
     pub height: f32,
     pub cornerRadius: f32,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -2394,7 +2369,6 @@ impl ::protobuf::reflect::ProtobufValue for ShapeEntity_RectArgs {
 }
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct ShapeEntity_EllipseArgs {
     // message fields
     pub x: f32,
@@ -2402,9 +2376,7 @@ pub struct ShapeEntity_EllipseArgs {
     pub radiusX: f32,
     pub radiusY: f32,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -2654,7 +2626,6 @@ impl ::protobuf::reflect::ProtobufValue for ShapeEntity_EllipseArgs {
 }
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct ShapeEntity_ShapeStyle {
     // message fields
     pub fill: ::protobuf::SingularPtrField<ShapeEntity_ShapeStyle_RGBAColor>,
@@ -2667,9 +2638,7 @@ pub struct ShapeEntity_ShapeStyle {
     pub lineDashII: f32,
     pub lineDashIII: f32,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -2684,7 +2653,7 @@ impl ShapeEntity_ShapeStyle {
         ::std::default::Default::default()
     }
 
-    // .com.opensource.svga.ShapeEntity.ShapeStyle.RGBAColor fill = 1;
+    // .ShapeEntity.ShapeStyle.RGBAColor fill = 1;
 
 
     pub fn get_fill(&self) -> &ShapeEntity_ShapeStyle_RGBAColor {
@@ -2717,7 +2686,7 @@ impl ShapeEntity_ShapeStyle {
         self.fill.take().unwrap_or_else(|| ShapeEntity_ShapeStyle_RGBAColor::new())
     }
 
-    // .com.opensource.svga.ShapeEntity.ShapeStyle.RGBAColor stroke = 2;
+    // .ShapeEntity.ShapeStyle.RGBAColor stroke = 2;
 
 
     pub fn get_stroke(&self) -> &ShapeEntity_ShapeStyle_RGBAColor {
@@ -2765,7 +2734,7 @@ impl ShapeEntity_ShapeStyle {
         self.strokeWidth = v;
     }
 
-    // .com.opensource.svga.ShapeEntity.ShapeStyle.LineCap lineCap = 4;
+    // .ShapeEntity.ShapeStyle.LineCap lineCap = 4;
 
 
     pub fn get_lineCap(&self) -> ShapeEntity_ShapeStyle_LineCap {
@@ -2780,7 +2749,7 @@ impl ShapeEntity_ShapeStyle {
         self.lineCap = v;
     }
 
-    // .com.opensource.svga.ShapeEntity.ShapeStyle.LineJoin lineJoin = 5;
+    // .ShapeEntity.ShapeStyle.LineJoin lineJoin = 5;
 
 
     pub fn get_lineJoin(&self) -> ShapeEntity_ShapeStyle_LineJoin {
@@ -3125,7 +3094,6 @@ impl ::protobuf::reflect::ProtobufValue for ShapeEntity_ShapeStyle {
 }
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct ShapeEntity_ShapeStyle_RGBAColor {
     // message fields
     pub r: f32,
@@ -3133,9 +3101,7 @@ pub struct ShapeEntity_ShapeStyle_RGBAColor {
     pub b: f32,
     pub a: f32,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -3385,7 +3351,6 @@ impl ::protobuf::reflect::ProtobufValue for ShapeEntity_ShapeStyle_RGBAColor {
 }
 
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub enum ShapeEntity_ShapeStyle_LineCap {
     LineCap_BUTT = 0,
     LineCap_ROUND = 1,
@@ -3439,7 +3404,6 @@ impl ::protobuf::reflect::ProtobufValue for ShapeEntity_ShapeStyle_LineCap {
 }
 
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub enum ShapeEntity_ShapeStyle_LineJoin {
     LineJoin_MITER = 0,
     LineJoin_ROUND = 1,
@@ -3493,7 +3457,6 @@ impl ::protobuf::reflect::ProtobufValue for ShapeEntity_ShapeStyle_LineJoin {
 }
 
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub enum ShapeEntity_ShapeType {
     SHAPE = 0,
     RECT = 1,
@@ -3550,7 +3513,6 @@ impl ::protobuf::reflect::ProtobufValue for ShapeEntity_ShapeType {
 }
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct FrameEntity {
     // message fields
     pub alpha: f32,
@@ -3559,9 +3521,7 @@ pub struct FrameEntity {
     pub clipPath: ::std::string::String,
     pub shapes: ::protobuf::RepeatedField<ShapeEntity>,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -3591,7 +3551,7 @@ impl FrameEntity {
         self.alpha = v;
     }
 
-    // .com.opensource.svga.Layout layout = 2;
+    // .Layout layout = 2;
 
 
     pub fn get_layout(&self) -> &Layout {
@@ -3624,7 +3584,7 @@ impl FrameEntity {
         self.layout.take().unwrap_or_else(|| Layout::new())
     }
 
-    // .com.opensource.svga.Transform transform = 3;
+    // .Transform transform = 3;
 
 
     pub fn get_transform(&self) -> &Transform {
@@ -3683,7 +3643,7 @@ impl FrameEntity {
         ::std::mem::replace(&mut self.clipPath, ::std::string::String::new())
     }
 
-    // repeated .com.opensource.svga.ShapeEntity shapes = 5;
+    // repeated .ShapeEntity shapes = 5;
 
 
     pub fn get_shapes(&self) -> &[ShapeEntity] {
@@ -3910,7 +3870,6 @@ impl ::protobuf::reflect::ProtobufValue for FrameEntity {
 }
 
 #[derive(PartialEq,Clone,Default)]
-#[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
 pub struct MovieEntity {
     // message fields
     pub version: ::std::string::String,
@@ -3919,9 +3878,7 @@ pub struct MovieEntity {
     pub sprites: ::protobuf::RepeatedField<SpriteEntity>,
     pub audios: ::protobuf::RepeatedField<AudioEntity>,
     // special fields
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub unknown_fields: ::protobuf::UnknownFields,
-    #[cfg_attr(feature = "with-serde", serde(skip))]
     pub cached_size: ::protobuf::CachedSize,
 }
 
@@ -3962,7 +3919,7 @@ impl MovieEntity {
         ::std::mem::replace(&mut self.version, ::std::string::String::new())
     }
 
-    // .com.opensource.svga.MovieParams params = 2;
+    // .MovieParams params = 2;
 
 
     pub fn get_params(&self) -> &MovieParams {
@@ -3995,7 +3952,7 @@ impl MovieEntity {
         self.params.take().unwrap_or_else(|| MovieParams::new())
     }
 
-    // repeated .com.opensource.svga.MovieEntity.ImagesEntry images = 3;
+    // repeated .MovieEntity.ImagesEntry images = 3;
 
 
     pub fn get_images(&self) -> &::std::collections::HashMap<::std::string::String, ::std::vec::Vec<u8>> {
@@ -4020,7 +3977,7 @@ impl MovieEntity {
         ::std::mem::replace(&mut self.images, ::std::collections::HashMap::new())
     }
 
-    // repeated .com.opensource.svga.SpriteEntity sprites = 4;
+    // repeated .SpriteEntity sprites = 4;
 
 
     pub fn get_sprites(&self) -> &[SpriteEntity] {
@@ -4045,7 +4002,7 @@ impl MovieEntity {
         ::std::mem::replace(&mut self.sprites, ::protobuf::RepeatedField::new())
     }
 
-    // repeated .com.opensource.svga.AudioEntity audios = 5;
+    // repeated .AudioEntity audios = 5;
 
 
     pub fn get_audios(&self) -> &[AudioEntity] {
@@ -4264,73 +4221,67 @@ impl ::protobuf::reflect::ProtobufValue for MovieEntity {
 }
 
 static file_descriptor_proto_data: &'static [u8] = b"\
-    \n\nsvga.proto\x12\x13com.opensource.svga\"\x81\x01\n\x0bMovieParams\x12\
-    \"\n\x0cviewBoxWidth\x18\x01\x20\x01(\x02R\x0cviewBoxWidth\x12$\n\rviewB\
-    oxHeight\x18\x02\x20\x01(\x02R\rviewBoxHeight\x12\x10\n\x03fps\x18\x03\
-    \x20\x01(\x05R\x03fps\x12\x16\n\x06frames\x18\x04\x20\x01(\x05R\x06frame\
-    s\"\x80\x01\n\x0cSpriteEntity\x12\x1a\n\x08imageKey\x18\x01\x20\x01(\tR\
-    \x08imageKey\x128\n\x06frames\x18\x02\x20\x03(\x0b2\x20.com.opensource.s\
-    vga.FrameEntityR\x06frames\x12\x1a\n\x08matteKey\x18\x03\x20\x01(\tR\x08\
-    matteKey\"\xa1\x01\n\x0bAudioEntity\x12\x1a\n\x08audioKey\x18\x01\x20\
-    \x01(\tR\x08audioKey\x12\x1e\n\nstartFrame\x18\x02\x20\x01(\x05R\nstartF\
-    rame\x12\x1a\n\x08endFrame\x18\x03\x20\x01(\x05R\x08endFrame\x12\x1c\n\t\
-    startTime\x18\x04\x20\x01(\x05R\tstartTime\x12\x1c\n\ttotalTime\x18\x05\
-    \x20\x01(\x05R\ttotalTime\"R\n\x06Layout\x12\x0c\n\x01x\x18\x01\x20\x01(\
-    \x02R\x01x\x12\x0c\n\x01y\x18\x02\x20\x01(\x02R\x01y\x12\x14\n\x05width\
-    \x18\x03\x20\x01(\x02R\x05width\x12\x16\n\x06height\x18\x04\x20\x01(\x02\
-    R\x06height\"c\n\tTransform\x12\x0c\n\x01a\x18\x01\x20\x01(\x02R\x01a\
-    \x12\x0c\n\x01b\x18\x02\x20\x01(\x02R\x01b\x12\x0c\n\x01c\x18\x03\x20\
-    \x01(\x02R\x01c\x12\x0c\n\x01d\x18\x04\x20\x01(\x02R\x01d\x12\x0e\n\x02t\
-    x\x18\x05\x20\x01(\x02R\x02tx\x12\x0e\n\x02ty\x18\x06\x20\x01(\x02R\x02t\
-    y\"\x91\x0b\n\x0bShapeEntity\x12>\n\x04type\x18\x01\x20\x01(\x0e2*.com.o\
-    pensource.svga.ShapeEntity.ShapeTypeR\x04type\x12B\n\x05shape\x18\x02\
-    \x20\x01(\x0b2*.com.opensource.svga.ShapeEntity.ShapeArgsH\0R\x05shape\
-    \x12?\n\x04rect\x18\x03\x20\x01(\x0b2).com.opensource.svga.ShapeEntity.R\
-    ectArgsH\0R\x04rect\x12H\n\x07ellipse\x18\x04\x20\x01(\x0b2,.com.opensou\
-    rce.svga.ShapeEntity.EllipseArgsH\0R\x07ellipse\x12C\n\x06styles\x18\n\
-    \x20\x01(\x0b2+.com.opensource.svga.ShapeEntity.ShapeStyleR\x06styles\
-    \x12<\n\ttransform\x18\x0b\x20\x01(\x0b2\x1e.com.opensource.svga.Transfo\
-    rmR\ttransform\x1a\x19\n\tShapeArgs\x12\x0c\n\x01d\x18\x01\x20\x01(\tR\
-    \x01d\x1ax\n\x08RectArgs\x12\x0c\n\x01x\x18\x01\x20\x01(\x02R\x01x\x12\
-    \x0c\n\x01y\x18\x02\x20\x01(\x02R\x01y\x12\x14\n\x05width\x18\x03\x20\
-    \x01(\x02R\x05width\x12\x16\n\x06height\x18\x04\x20\x01(\x02R\x06height\
-    \x12\"\n\x0ccornerRadius\x18\x05\x20\x01(\x02R\x0ccornerRadius\x1a]\n\
-    \x0bEllipseArgs\x12\x0c\n\x01x\x18\x01\x20\x01(\x02R\x01x\x12\x0c\n\x01y\
-    \x18\x02\x20\x01(\x02R\x01y\x12\x18\n\x07radiusX\x18\x03\x20\x01(\x02R\
-    \x07radiusX\x12\x18\n\x07radiusY\x18\x04\x20\x01(\x02R\x07radiusY\x1a\
-    \xba\x05\n\nShapeStyle\x12I\n\x04fill\x18\x01\x20\x01(\x0b25.com.opensou\
-    rce.svga.ShapeEntity.ShapeStyle.RGBAColorR\x04fill\x12M\n\x06stroke\x18\
-    \x02\x20\x01(\x0b25.com.opensource.svga.ShapeEntity.ShapeStyle.RGBAColor\
-    R\x06stroke\x12\x20\n\x0bstrokeWidth\x18\x03\x20\x01(\x02R\x0bstrokeWidt\
-    h\x12M\n\x07lineCap\x18\x04\x20\x01(\x0e23.com.opensource.svga.ShapeEnti\
-    ty.ShapeStyle.LineCapR\x07lineCap\x12P\n\x08lineJoin\x18\x05\x20\x01(\
-    \x0e24.com.opensource.svga.ShapeEntity.ShapeStyle.LineJoinR\x08lineJoin\
-    \x12\x1e\n\nmiterLimit\x18\x06\x20\x01(\x02R\nmiterLimit\x12\x1c\n\tline\
-    DashI\x18\x07\x20\x01(\x02R\tlineDashI\x12\x1e\n\nlineDashII\x18\x08\x20\
-    \x01(\x02R\nlineDashII\x12\x20\n\x0blineDashIII\x18\t\x20\x01(\x02R\x0bl\
-    ineDashIII\x1aC\n\tRGBAColor\x12\x0c\n\x01r\x18\x01\x20\x01(\x02R\x01r\
-    \x12\x0c\n\x01g\x18\x02\x20\x01(\x02R\x01g\x12\x0c\n\x01b\x18\x03\x20\
-    \x01(\x02R\x01b\x12\x0c\n\x01a\x18\x04\x20\x01(\x02R\x01a\"B\n\x07LineCa\
-    p\x12\x10\n\x0cLineCap_BUTT\x10\0\x12\x11\n\rLineCap_ROUND\x10\x01\x12\
-    \x12\n\x0eLineCap_SQUARE\x10\x02\"F\n\x08LineJoin\x12\x12\n\x0eLineJoin_\
-    MITER\x10\0\x12\x12\n\x0eLineJoin_ROUND\x10\x01\x12\x12\n\x0eLineJoin_BE\
-    VEL\x10\x02\"7\n\tShapeType\x12\t\n\x05SHAPE\x10\0\x12\x08\n\x04RECT\x10\
-    \x01\x12\x0b\n\x07ELLIPSE\x10\x02\x12\x08\n\x04KEEP\x10\x03B\x06\n\x04ar\
-    gs\"\xec\x01\n\x0bFrameEntity\x12\x14\n\x05alpha\x18\x01\x20\x01(\x02R\
-    \x05alpha\x123\n\x06layout\x18\x02\x20\x01(\x0b2\x1b.com.opensource.svga\
-    .LayoutR\x06layout\x12<\n\ttransform\x18\x03\x20\x01(\x0b2\x1e.com.opens\
-    ource.svga.TransformR\ttransform\x12\x1a\n\x08clipPath\x18\x04\x20\x01(\
-    \tR\x08clipPath\x128\n\x06shapes\x18\x05\x20\x03(\x0b2\x20.com.opensourc\
-    e.svga.ShapeEntityR\x06shapes\"\xd9\x02\n\x0bMovieEntity\x12\x18\n\x07ve\
-    rsion\x18\x01\x20\x01(\tR\x07version\x128\n\x06params\x18\x02\x20\x01(\
-    \x0b2\x20.com.opensource.svga.MovieParamsR\x06params\x12D\n\x06images\
-    \x18\x03\x20\x03(\x0b2,.com.opensource.svga.MovieEntity.ImagesEntryR\x06\
-    images\x12;\n\x07sprites\x18\x04\x20\x03(\x0b2!.com.opensource.svga.Spri\
-    teEntityR\x07sprites\x128\n\x06audios\x18\x05\x20\x03(\x0b2\x20.com.open\
-    source.svga.AudioEntityR\x06audios\x1a9\n\x0bImagesEntry\x12\x10\n\x03ke\
-    y\x18\x01\x20\x01(\tR\x03key\x12\x14\n\x05value\x18\x02\x20\x01(\x0cR\
-    \x05value:\x028\x01B-\n\x1fcom.opensource.svgaplayer.proto\xa2\x02\tSVGA\
-    Protob\x06proto3\
+    \n\nsvga.proto\"\x81\x01\n\x0bMovieParams\x12\"\n\x0cviewBoxWidth\x18\
+    \x01\x20\x01(\x02R\x0cviewBoxWidth\x12$\n\rviewBoxHeight\x18\x02\x20\x01\
+    (\x02R\rviewBoxHeight\x12\x10\n\x03fps\x18\x03\x20\x01(\x05R\x03fps\x12\
+    \x16\n\x06frames\x18\x04\x20\x01(\x05R\x06frames\"l\n\x0cSpriteEntity\
+    \x12\x1a\n\x08imageKey\x18\x01\x20\x01(\tR\x08imageKey\x12$\n\x06frames\
+    \x18\x02\x20\x03(\x0b2\x0c.FrameEntityR\x06frames\x12\x1a\n\x08matteKey\
+    \x18\x03\x20\x01(\tR\x08matteKey\"\xa1\x01\n\x0bAudioEntity\x12\x1a\n\
+    \x08audioKey\x18\x01\x20\x01(\tR\x08audioKey\x12\x1e\n\nstartFrame\x18\
+    \x02\x20\x01(\x05R\nstartFrame\x12\x1a\n\x08endFrame\x18\x03\x20\x01(\
+    \x05R\x08endFrame\x12\x1c\n\tstartTime\x18\x04\x20\x01(\x05R\tstartTime\
+    \x12\x1c\n\ttotalTime\x18\x05\x20\x01(\x05R\ttotalTime\"R\n\x06Layout\
+    \x12\x0c\n\x01x\x18\x01\x20\x01(\x02R\x01x\x12\x0c\n\x01y\x18\x02\x20\
+    \x01(\x02R\x01y\x12\x14\n\x05width\x18\x03\x20\x01(\x02R\x05width\x12\
+    \x16\n\x06height\x18\x04\x20\x01(\x02R\x06height\"c\n\tTransform\x12\x0c\
+    \n\x01a\x18\x01\x20\x01(\x02R\x01a\x12\x0c\n\x01b\x18\x02\x20\x01(\x02R\
+    \x01b\x12\x0c\n\x01c\x18\x03\x20\x01(\x02R\x01c\x12\x0c\n\x01d\x18\x04\
+    \x20\x01(\x02R\x01d\x12\x0e\n\x02tx\x18\x05\x20\x01(\x02R\x02tx\x12\x0e\
+    \n\x02ty\x18\x06\x20\x01(\x02R\x02ty\"\xc9\t\n\x0bShapeEntity\x12*\n\x04\
+    type\x18\x01\x20\x01(\x0e2\x16.ShapeEntity.ShapeTypeR\x04type\x12.\n\x05\
+    shape\x18\x02\x20\x01(\x0b2\x16.ShapeEntity.ShapeArgsH\0R\x05shape\x12+\
+    \n\x04rect\x18\x03\x20\x01(\x0b2\x15.ShapeEntity.RectArgsH\0R\x04rect\
+    \x124\n\x07ellipse\x18\x04\x20\x01(\x0b2\x18.ShapeEntity.EllipseArgsH\0R\
+    \x07ellipse\x12/\n\x06styles\x18\n\x20\x01(\x0b2\x17.ShapeEntity.ShapeSt\
+    yleR\x06styles\x12(\n\ttransform\x18\x0b\x20\x01(\x0b2\n.TransformR\ttra\
+    nsform\x1a\x19\n\tShapeArgs\x12\x0c\n\x01d\x18\x01\x20\x01(\tR\x01d\x1ax\
+    \n\x08RectArgs\x12\x0c\n\x01x\x18\x01\x20\x01(\x02R\x01x\x12\x0c\n\x01y\
+    \x18\x02\x20\x01(\x02R\x01y\x12\x14\n\x05width\x18\x03\x20\x01(\x02R\x05\
+    width\x12\x16\n\x06height\x18\x04\x20\x01(\x02R\x06height\x12\"\n\x0ccor\
+    nerRadius\x18\x05\x20\x01(\x02R\x0ccornerRadius\x1a]\n\x0bEllipseArgs\
+    \x12\x0c\n\x01x\x18\x01\x20\x01(\x02R\x01x\x12\x0c\n\x01y\x18\x02\x20\
+    \x01(\x02R\x01y\x12\x18\n\x07radiusX\x18\x03\x20\x01(\x02R\x07radiusX\
+    \x12\x18\n\x07radiusY\x18\x04\x20\x01(\x02R\x07radiusY\x1a\xea\x04\n\nSh\
+    apeStyle\x125\n\x04fill\x18\x01\x20\x01(\x0b2!.ShapeEntity.ShapeStyle.RG\
+    BAColorR\x04fill\x129\n\x06stroke\x18\x02\x20\x01(\x0b2!.ShapeEntity.Sha\
+    peStyle.RGBAColorR\x06stroke\x12\x20\n\x0bstrokeWidth\x18\x03\x20\x01(\
+    \x02R\x0bstrokeWidth\x129\n\x07lineCap\x18\x04\x20\x01(\x0e2\x1f.ShapeEn\
+    tity.ShapeStyle.LineCapR\x07lineCap\x12<\n\x08lineJoin\x18\x05\x20\x01(\
+    \x0e2\x20.ShapeEntity.ShapeStyle.LineJoinR\x08lineJoin\x12\x1e\n\nmiterL\
+    imit\x18\x06\x20\x01(\x02R\nmiterLimit\x12\x1c\n\tlineDashI\x18\x07\x20\
+    \x01(\x02R\tlineDashI\x12\x1e\n\nlineDashII\x18\x08\x20\x01(\x02R\nlineD\
+    ashII\x12\x20\n\x0blineDashIII\x18\t\x20\x01(\x02R\x0blineDashIII\x1aC\n\
+    \tRGBAColor\x12\x0c\n\x01r\x18\x01\x20\x01(\x02R\x01r\x12\x0c\n\x01g\x18\
+    \x02\x20\x01(\x02R\x01g\x12\x0c\n\x01b\x18\x03\x20\x01(\x02R\x01b\x12\
+    \x0c\n\x01a\x18\x04\x20\x01(\x02R\x01a\"B\n\x07LineCap\x12\x10\n\x0cLine\
+    Cap_BUTT\x10\0\x12\x11\n\rLineCap_ROUND\x10\x01\x12\x12\n\x0eLineCap_SQU\
+    ARE\x10\x02\"F\n\x08LineJoin\x12\x12\n\x0eLineJoin_MITER\x10\0\x12\x12\n\
+    \x0eLineJoin_ROUND\x10\x01\x12\x12\n\x0eLineJoin_BEVEL\x10\x02\"7\n\tSha\
+    peType\x12\t\n\x05SHAPE\x10\0\x12\x08\n\x04RECT\x10\x01\x12\x0b\n\x07ELL\
+    IPSE\x10\x02\x12\x08\n\x04KEEP\x10\x03B\x06\n\x04args\"\xb0\x01\n\x0bFra\
+    meEntity\x12\x14\n\x05alpha\x18\x01\x20\x01(\x02R\x05alpha\x12\x1f\n\x06\
+    layout\x18\x02\x20\x01(\x0b2\x07.LayoutR\x06layout\x12(\n\ttransform\x18\
+    \x03\x20\x01(\x0b2\n.TransformR\ttransform\x12\x1a\n\x08clipPath\x18\x04\
+    \x20\x01(\tR\x08clipPath\x12$\n\x06shapes\x18\x05\x20\x03(\x0b2\x0c.Shap\
+    eEntityR\x06shapes\"\x89\x02\n\x0bMovieEntity\x12\x18\n\x07version\x18\
+    \x01\x20\x01(\tR\x07version\x12$\n\x06params\x18\x02\x20\x01(\x0b2\x0c.M\
+    ovieParamsR\x06params\x120\n\x06images\x18\x03\x20\x03(\x0b2\x18.MovieEn\
+    tity.ImagesEntryR\x06images\x12'\n\x07sprites\x18\x04\x20\x03(\x0b2\r.Sp\
+    riteEntityR\x07sprites\x12$\n\x06audios\x18\x05\x20\x03(\x0b2\x0c.AudioE\
+    ntityR\x06audios\x1a9\n\x0bImagesEntry\x12\x10\n\x03key\x18\x01\x20\x01(\
+    \tR\x03key\x12\x14\n\x05value\x18\x02\x20\x01(\x0cR\x05value:\x028\x01b\
+    \x06proto3\
 ";
 
 static file_descriptor_proto_lazy: ::protobuf::rt::LazyV2<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::rt::LazyV2::INIT;

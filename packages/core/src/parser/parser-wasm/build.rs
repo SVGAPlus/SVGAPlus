@@ -1,16 +1,18 @@
+extern crate protobuf_codegen_pure;
 extern crate protoc_rust;
 
-use protoc_rust::Customize;
+use std::env;
+use protobuf_codegen_pure::Customize;
 
 fn main() {
   protoc_rust::Codegen::new()
-    .out_dir("src")
-    .inputs(&["protos/svga.proto"])
-    .include("protos")
     .customize(Customize {
-      serde_derive: Some(true),
+      gen_mod_rs: Some(true),
       ..Default::default()
     })
+    .out_dir("src/protos")
+    .inputs(&["protos/svga.proto"])
+    .include("protos")
     .run()
-    .expect("protoc");
+    .expect("no protoc in path");
 }
