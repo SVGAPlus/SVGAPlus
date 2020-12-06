@@ -1,8 +1,5 @@
-extern crate protobuf_codegen_pure;
-extern crate protoc_rust;
-
 use std::env;
-use protobuf_codegen_pure::Customize;
+use protoc_rust::Customize;
 
 fn main() {
   protoc_rust::Codegen::new()
