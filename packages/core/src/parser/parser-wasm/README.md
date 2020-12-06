@@ -1,5 +1,7 @@
 # Parser WASM
 
-## 构建 Proto
+## Build proto
 
-在装有 protoc 的环境下执行 cargo build, 生成的文件为 src/svga.rs.
+Use `cargo build` command to build svga proto file. Proto files will be placed under `src/protos`.
+
+`protoc` is needed.

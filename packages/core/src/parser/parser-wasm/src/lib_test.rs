@@ -3,8 +3,6 @@ mod lib_test {
   use std::fs;
   use protobuf::parse_from_bytes;
   use inflate::inflate_bytes_zlib;
-
-  use crate::protos::svga::MovieEntity;
   use crate::decode_svga;
 
   #[test]

@@ -4,7 +4,7 @@ mod lib_test;
 mod protos;
 
 use wasm_bindgen::prelude::*;
-use wasm_bindgen::__rt::std::io::BufReader;
+
 use inflate::inflate_bytes_zlib;
 use protobuf::parse_from_bytes;
 
