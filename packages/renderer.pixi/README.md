@@ -1,8 +1,8 @@
 # SVGAPlus PixiRenderer
 
-You can use PIXI.js to render SVGA graphics.
+You are able to use PIXI.js to render SVGA graphics.
 
-Just doing few steps and you're on 🔥!
+Just doing a few steps and you are gonna be on 🔥!
 
 ## Setup
 
@@ -34,7 +34,7 @@ Done! Now you have everything from PIXI.js!
 
 ## Customize your PIXI Renderer
 
-You can access pixi stuff from here:
+You can access all pixi stuffs from here:
 
 ```ts
 const player = new SVGAPlus({
@@ -45,14 +45,14 @@ const player = new SVGAPlus({
 player.renderer  // Pixi is so 🔥! 
 ```
 
-And two props are important for you:
+And you might want to know:
 
 ```ts
 player.renderer.pixiApp        // Pixi Application.
 player.renderer.pixiContainer  // Everything has been put in this container.
 ```
 
-For an example, this is how to add pixi filters:
+For an example, this is the way to use pixi filters:
 
 ```ts
 import { SVGAPlus } from '@svgaplus/core'
@@ -67,10 +67,10 @@ const player = new SVGAPlus({
 await player.init()
 
 // Set your favourite filters.
-// Do this process after "init".
+// Just doing this after calling "init()".
 player.renderer.pixiContainer.filters = [
   new Filters.RGBSplitFilter()
 ]
 ```
 
-For more usage, check out pixi.js for more information.
+Check out [PIXI.js](https://github.com/pixijs) for more information.
