@@ -237,7 +237,7 @@ class PixiRenderer implements SVGAPlusRenderer {
       }
 
       // Deal with bitmap sprites.
-      this._drawBitmapSprite(frame, i);
+      this._drawBitmapSprite(frame, i)
     }
 
     this._playController.setLastDrawFrame(frameIndex)
@@ -269,7 +269,6 @@ class PixiRenderer implements SVGAPlusRenderer {
 
     const container = new Container()
     app.stage.addChild(container)
-    this._childrenMap.set(container.name, container)
     this._pixiContainer = container
 
     // Add sprite image into pixi.
