@@ -1,6 +1,6 @@
 {
   "name": "@svgaplus/renderer.pixi",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "SVGAPlus pixi.js renderer.",
   "main": "dist/index.js",
   "files": [
