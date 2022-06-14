@@ -237,10 +237,7 @@ class PixiRenderer implements SVGAPlusRenderer {
       }
 
       // Deal with bitmap sprites.
-      const { transform, alpha, layout } = frame;
-      if (this._pixiContainer.children && (TypeUtils.isNumber(alpha) || layout || transform)) {
-        this._drawBitmapSprite(frame, i);
-      }
+      this._drawBitmapSprite(frame, i);
     }
 
     this._playController.setLastDrawFrame(frameIndex)
