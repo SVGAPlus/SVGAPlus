@@ -29,6 +29,7 @@ class PixiRenderer implements SVGAPlusRenderer {
   private _playController: SvgaPlayController = null
   private _eventBus: EventBus = null
   private _fps: number = 0
+  private _childrenMap = new Map()
 
   private _pixiApp: PIXI.Application = null
   private _pixiContainer: PIXI.Container = null
@@ -56,9 +57,7 @@ class PixiRenderer implements SVGAPlusRenderer {
     spriteIndex: number
   ) {
     const { transform, alpha, layout } = frame
-    const container = this._pixiContainer
-    const spritePixi = container.children
-      .find(item => item.name === spriteIndex.toString())
+    const spritePixi = this._childrenMap.get(spriteIndex.toString())
 
     if (!spritePixi) {
       return
@@ -190,10 +189,12 @@ class PixiRenderer implements SVGAPlusRenderer {
       )
     )
     this._pixiContainer.addChild(pixiSprite)
+    this._childrenMap.set(pixiSprite.name, pixiSprite)
     this._pixiApp.render()  // render function must be called.
 
     // Destroy sprite in next tick in case of OOM.
     raf(() => {
+      this._childrenMap.delete(pixiSprite.name)
       this._pixiContainer.removeChild(pixiSprite)
       pixiSprite.destroy({
         children: true, baseTexture: true, texture: true
@@ -271,6 +272,7 @@ class PixiRenderer implements SVGAPlusRenderer {
 
     const container = new Container()
     app.stage.addChild(container)
+    this._childrenMap.set(container.name, container)
     this._pixiContainer = container
 
     // Add sprite image into pixi.
@@ -299,6 +301,7 @@ class PixiRenderer implements SVGAPlusRenderer {
           const spritePixi = new PIXI.Sprite(resources[imageKey].texture)
           spritePixi.name = i.toString()
           container.addChild(spritePixi)
+          this._childrenMap.set(spritePixi.name, spritePixi)
         } else {
           // console.log('[SVGAPlus] This is a vector sprite:', spriteSvga)
         }
