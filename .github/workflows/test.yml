@@ -23,11 +23,11 @@ jobs:
 
       - name: Install dependencies for Core package
         working-directory: ./packages/core
-        run: npm ci
+        run: npm install
 
       - name: Install dependencies for pixi.renderer
         working-directory: ./packages/renderer.pixi
-        run: npm ci
+        run: npm install
 
       - name: Build Core package
         working-directory: ./packages/core

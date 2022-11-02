@@ -4,7 +4,6 @@
   "description": "Enhanced SVGA Player.",
   "main": "dist/index.js",
   "scripts": {
-    "prepublish": "npm test && npm run build",
     "dev": "webpack-dev-server --config ./build/webpack.dev.js",
     "build": "webpack --config ./build/webpack.build.js",
     "pb": "npx pbf ./src/proto/svga.proto > ./src/proto/svga.proto.js",
