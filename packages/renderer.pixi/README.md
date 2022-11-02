@@ -4,6 +4,8 @@ You are able to use PIXI.js to render SVGA graphics.
 
 Just doing a few steps and you are gonna be on 🔥!
 
+> This version is for PIXI.JS v7. If you want to use v5, please install 1.x.
+
 ## Setup
 
 1. Install PIXI.js v7 to your project:
