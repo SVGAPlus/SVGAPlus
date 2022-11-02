@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [16.x]
 
     steps:
       - name: Checkout code
@@ -21,16 +21,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Test core package
+      - name: Install dependencies for Core package
         working-directory: ./packages/core
-        run: npm ci
+        run: npm install
 
-      - name: build
-        working-directory: ./packages/core
-        run: npm run build --if-present
-        env:
-          CI: true
+      - name: Install dependencies for pixi.renderer
+        working-directory: ./packages/renderer.pixi
+        run: npm install
 
-      - name: Run test
+      - name: Run Core package testing
         working-directory: ./packages/core
         run: npm test

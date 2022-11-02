@@ -1,20 +1,15 @@
-import 'core-js'
-
 import { PixiRenderer } from '../../../renderer.pixi/lib'
 import { SVGAPlus } from '../../src'
 import { randomNumber, sleep } from './utils'
 
-const raf = window.requestAnimationFrame ||
-  window.webkitRequestAnimationFrame
-
 const spriteList: { [key: string]: { url: string, element: string, svga: SVGAPlus } } = {
-  background: { url: './static/background.svga', element: '#background', svga: null },
-  hex: { url: './static/hex.svga', element: '#hex', svga: null },
-  explosion: { url: './static/explosion.svga', element: '#explosion', svga: null },
-  sprite22: { url: './static/22.svga', element: '#sprite-22', svga: null },
-  text22: { url: './static/22-text.svga', element: '#text-22', svga: null },
-  sprite33: { url: './static/33.svga', element: '#sprite-33', svga: null },
-  text33: { url: './static/33-text.svga', element: '#text-33', svga: null }
+  background: { url: '/background.svga', element: '#background', svga: null },
+  hex: { url: '/hex.svga', element: '#hex', svga: null },
+  explosion: { url: '/explosion.svga', element: '#explosion', svga: null },
+  sprite22: { url: '/22.svga', element: '#sprite-22', svga: null },
+  text22: { url: '/22-text.svga', element: '#text-22', svga: null },
+  sprite33: { url: '/33.svga', element: '#sprite-33', svga: null },
+  text33: { url: '/33-text.svga', element: '#text-33', svga: null }
 }
 
 let playStatus: 'standby' | 'lottery22' | 'lottery33' = 'standby'
@@ -44,7 +39,7 @@ async function initSvga () {
       .map(key => SVGAPlus.loadSvgaFile(spriteList[key].url + '?ts=' + Date.now()))
   )
 
-  const svgas = await Promise.all(buffers.map((buffer, index) => {
+  await Promise.all(buffers.map((buffer, index) => {
     const item = spriteList[Object.keys(spriteList)[index]]
     const element = item.element
     const svga = new SVGAPlus({
@@ -54,10 +49,12 @@ async function initSvga () {
     })
     item.svga = svga
     return svga
+      .init()
+      .then(() => {
+        svga.stop()
+      })
   }))
 
-  await Promise.all(svgas.map(item => item.init()))
-  svgas.forEach(item => item.stop())
   console.log('Init takes:', Date.now() - startTs, 'ms')
 }
 
@@ -86,13 +83,13 @@ async function playStandby () {
       await sprite22.playOnce(0, 14)
     }
     await sleep(randomNumber(2000, 4000))
-    raf(tick22)
+    requestAnimationFrame(tick22)
   }
   tick22()
 
   const tick22Text = async () => {
     await text22.playOnce(0, 27)
-    raf(tick22Text)
+    requestAnimationFrame(tick22Text)
   }
   tick22Text()
 
@@ -104,13 +101,13 @@ async function playStandby () {
       await sprite33.playOnce(0, 18)
     }
     await sleep(randomNumber(2000, 4000))
-    raf(tick33)
+    requestAnimationFrame(tick33)
   }
   tick33()
 
   const tick33Text = async () => {
     await text33.playOnce(0, 19)
-    raf(tick33Text)
+    requestAnimationFrame(tick33Text)
   }
   tick33Text()
 }

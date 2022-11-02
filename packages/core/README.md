@@ -10,7 +10,6 @@ Enhanced SVGA Player for Web.
 
  - Vanilla canvas drawing by default, no 3rd-part rendering libs included.
  - Pixi.js renderer available.
- - Worker initialization, no thread blocking.
  - Provide more useful information and more customizable options, such as adjustable framerate.
  - No strange resizing behavior, act like a HTML image.
  - Better API design for playing control.
@@ -103,10 +102,6 @@ svgas.forEach(item => item.play())
 ## Compatibility
 
 It should support browsers those have canvas such like IE11+.
-
-## Worker Initialization
-
-By default, SVGAPlus will parse SVGA files in main thread. If this causes UI freezed, use `import { SVGAPlus } from 'svgaplus/dist/index.worker.js` then initialization will be done in worker thread. But somehow it would takes a few more time.
 
 ## Adjustable frame rate
 

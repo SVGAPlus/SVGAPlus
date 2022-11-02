@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "module": "esnext",
     "target": "es5",
@@ -18,6 +16,5 @@
       "es2017",
       "es2018"
     ]
-  },
-  "exclude": ["test"]
+  }
 }

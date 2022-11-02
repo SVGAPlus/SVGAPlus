@@ -1,6 +1,10 @@
-import * as PIXI from 'pixi.js'
-import { BaseTexture, Container, Texture } from 'pixi.js'
+/*!
+ * SVGAPlusPixiRenderer - Pixi Renderer for SVGAPlus.
+ * @ LancerComet | # Carry Your World #
+ * License: MIT
+ */
 
+import { BaseTexture, Container, Texture, Sprite, Application, Matrix } from 'pixi.js'
 import { drawEllipse, drawSvg, setFillStyle, setStrokeStyle } from '../../core/src/core/draw'
 import { ISVGAPlusRendererTickFrameParam } from '../../core/src/core/models/renderer'
 import { SVGAPlusRenderer } from '../../core/src/core/models/renderer'
@@ -28,21 +32,21 @@ class PixiRenderer implements SVGAPlusRenderer {
   private _imageController: SVGAImageController = null
   private _playController: SvgaPlayController = null
   private _eventBus: EventBus = null
-  private _fps: number = 0
+  private _fps = 0
   private _childrenMap = new Map()
 
-  private _pixiApp: PIXI.Application = null
-  private _pixiContainer: PIXI.Container = null
+  private _pixiApp: Application = null
+  private _pixiContainer: Container = null
 
-  get pixiApp (): PIXI.Application {
+  get pixiApp (): Application {
     return this._pixiApp
   }
 
-  get pixiContainer (): PIXI.Container {
+  get pixiContainer (): Container {
     return this._pixiContainer
   }
 
-  private _isDestroyed: boolean = false
+  private _isDestroyed = false
 
   // This object keeps the shape that is used in last frame.
   // Some frames' type are "ShapeType.Keep". We'll get target shape from here when this kinda type of type was caught.
@@ -72,7 +76,7 @@ class PixiRenderer implements SVGAPlusRenderer {
     }
 
     if (transform) {
-      spritePixi.transform.setFromMatrix(new PIXI.Matrix(
+      spritePixi.transform.setFromMatrix(new Matrix(
         transform.a, transform.b || 0, transform.c || 0, transform.d, transform.tx, transform.ty
       ))
     }
@@ -180,7 +184,7 @@ class PixiRenderer implements SVGAPlusRenderer {
       }
     }
 
-    const pixiSprite = new PIXI.Sprite(
+    const pixiSprite = new Sprite(
       new Texture(
         new BaseTexture(canvas, {
           width: canvas.width,
@@ -256,11 +260,11 @@ class PixiRenderer implements SVGAPlusRenderer {
   }
 
   private _initPixi () {
-    const app = new PIXI.Application({
+    const app = new Application({
       width: this._canvas.width,
       height: this._canvas.height,
       view: this._canvas,
-      transparent: true
+      backgroundAlpha: 0
     })
 
     app.ticker.maxFPS = this._fps
@@ -271,30 +275,41 @@ class PixiRenderer implements SVGAPlusRenderer {
     app.stage.addChild(container)
     this._pixiContainer = container
 
+    const loadingImageKey: Record<string, 1> = {}
+    const loadedTextures: Record<string, Texture> = {}
+    const loadQueue: Promise<void>[] = []
+
     // Add sprite image into pixi.
     for (const sprite of this._movieEntity.sprites) {
       const { imageKey } = sprite
 
       // There would be two kinda situations:
       // 1. You will receive a HTMLImageElement with a valid src prop,
-      //    But maybe it would be in load.
-      // 2. No image received, because it is a SVG.
+      //    but perhaps it could be loading.
+      // 2. No bitmap image received, because it is a SVG.
       //    All svg path are stored in every single frame.
       const spriteImage = this._imageController.getSpriteImage(imageKey)
-      const isAlreadyAdded = !!app.loader.resources[imageKey]
+      const isAlreadyAdded = loadingImageKey[imageKey]
       if (spriteImage && !isAlreadyAdded) {
-        app.loader.add(imageKey, spriteImage.src)
+        const imageSrc = spriteImage.src
+        loadQueue.push(
+          Texture.fromURL(imageSrc).then(texture => {
+            loadedTextures[imageKey] = texture
+          })
+        )
+        loadingImageKey[imageKey] = 1  // Just to indicate this image is being loaded.
       }
     }
 
-    app.loader.load((loader, resources) => {
-      // Create pixi sprites for every single SVGA sprite.
+    // Create pixi sprites for every single SVGA sprite.
+    Promise.all(loadQueue).then(() => {
       for (let i = 0, length = this._movieEntity.sprites.length; i < length; i++) {
         const spriteSvga = this._movieEntity.sprites[i]
         const { imageKey } = spriteSvga
 
-        if (resources[imageKey]) {
-          const spritePixi = new PIXI.Sprite(resources[imageKey].texture)
+        const texture = loadedTextures[imageKey]
+        if (texture) {
+          const spritePixi = new Sprite(texture)
           spritePixi.name = i.toString()
           container.addChild(spritePixi)
           this._childrenMap.set(spritePixi.name, spritePixi)
@@ -302,8 +317,9 @@ class PixiRenderer implements SVGAPlusRenderer {
           // console.log('[SVGAPlus] This is a vector sprite:', spriteSvga)
         }
       }
-
       this.tickFrame({ forceTick: true })  // This is used for drawing first frame.
+    }).catch(error => {
+      console.error('[SVGAPlus] Failed to load sprites:', error)
     })
   }
 
