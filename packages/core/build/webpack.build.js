@@ -1,12 +1,13 @@
 const path = require('path')
 const webpack = require('webpack')
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const FriendlyErrorsPlugin = require('@soda/friendly-errors-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const isWorkerBuild = !!process.env.IS_WORKER_BUILD
 const version = require('../package').version
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const config = {
   mode: 'production',
+
   entry: path.resolve(__dirname, '../src/index.ts'),
 
   output: {
@@ -47,21 +48,15 @@ const config = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new FriendlyErrorsPlugin(),
     new webpack.BannerPlugin({
       banner: 'SVGAPlus - Enhanced SVGA Player.\n' +
       '© LancerComet | # Carry Your World #\n' +
       `Version: ${version}\n` +
       'License: MIT'
-    }),
-    new webpack.DefinePlugin({
-      'process.env.IS_WORKER_BUILD': isWorkerBuild
     })
   ]
-}
-
-if (isWorkerBuild) {
-  config.output.filename = 'index.worker.js'
 }
 
 module.exports = config

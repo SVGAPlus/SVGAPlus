@@ -4,9 +4,7 @@
  * License: MIT
  */
 
-import * as PIXI from 'pixi.js'
-import { BaseTexture, Container, Texture, Assets, loadTextures } from 'pixi.js'
-
+import { BaseTexture, Container, Texture, Sprite, Application, Matrix } from 'pixi.js'
 import { drawEllipse, drawSvg, setFillStyle, setStrokeStyle } from '../../core/src/core/draw'
 import { ISVGAPlusRendererTickFrameParam } from '../../core/src/core/models/renderer'
 import { SVGAPlusRenderer } from '../../core/src/core/models/renderer'
@@ -37,14 +35,14 @@ class PixiRenderer implements SVGAPlusRenderer {
   private _fps = 0
   private _childrenMap = new Map()
 
-  private _pixiApp: PIXI.Application = null
-  private _pixiContainer: PIXI.Container = null
+  private _pixiApp: Application = null
+  private _pixiContainer: Container = null
 
-  get pixiApp (): PIXI.Application {
+  get pixiApp (): Application {
     return this._pixiApp
   }
 
-  get pixiContainer (): PIXI.Container {
+  get pixiContainer (): Container {
     return this._pixiContainer
   }
 
@@ -78,7 +76,7 @@ class PixiRenderer implements SVGAPlusRenderer {
     }
 
     if (transform) {
-      spritePixi.transform.setFromMatrix(new PIXI.Matrix(
+      spritePixi.transform.setFromMatrix(new Matrix(
         transform.a, transform.b || 0, transform.c || 0, transform.d, transform.tx, transform.ty
       ))
     }
@@ -186,7 +184,7 @@ class PixiRenderer implements SVGAPlusRenderer {
       }
     }
 
-    const pixiSprite = new PIXI.Sprite(
+    const pixiSprite = new Sprite(
       new Texture(
         new BaseTexture(canvas, {
           width: canvas.width,
@@ -262,7 +260,7 @@ class PixiRenderer implements SVGAPlusRenderer {
   }
 
   private _initPixi () {
-    const app = new PIXI.Application({
+    const app = new Application({
       width: this._canvas.width,
       height: this._canvas.height,
       view: this._canvas,
@@ -295,7 +293,7 @@ class PixiRenderer implements SVGAPlusRenderer {
       if (spriteImage && !isAlreadyAdded) {
         const imageSrc = spriteImage.src
         loadQueue.push(
-          Assets.load(imageSrc).then(texture => {
+          Texture.fromURL(imageSrc).then(texture => {
             loadedTextures[imageKey] = texture
           })
         )
@@ -304,7 +302,6 @@ class PixiRenderer implements SVGAPlusRenderer {
     }
 
     // Create pixi sprites for every single SVGA sprite.
-    // console.log(Assets.cache)
     Promise.all(loadQueue).then(() => {
       for (let i = 0, length = this._movieEntity.sprites.length; i < length; i++) {
         const spriteSvga = this._movieEntity.sprites[i]
@@ -312,7 +309,7 @@ class PixiRenderer implements SVGAPlusRenderer {
 
         const texture = loadedTextures[imageKey]
         if (texture) {
-          const spritePixi = new PIXI.Sprite(texture)
+          const spritePixi = new Sprite(texture)
           spritePixi.name = i.toString()
           container.addChild(spritePixi)
           this._childrenMap.set(spritePixi.name, spritePixi)

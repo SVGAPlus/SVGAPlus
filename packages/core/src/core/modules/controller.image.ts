@@ -11,7 +11,7 @@ class SVGAImageController {
    *
    * @param imageKey
    */
-  getSpriteImage (imageKey: string): HTMLImageElement {
+  getSpriteImage (imageKey: string): HTMLImageElement | undefined {
     if (!this._movieEntity) {
       return null
     }
@@ -24,6 +24,7 @@ class SVGAImageController {
     const imageBuffer = (this._movieEntity.images || {})[imageKey]
     if (imageBuffer) {
       const imageRawData = SVGAUtils.uint8ToString(imageBuffer)
+      const imageSrc = 'data:image/png;base64,' + btoa(imageRawData)
       const image = new Image()
 
       // Define a property to indicate whether is image has been loaded.
@@ -35,16 +36,15 @@ class SVGAImageController {
       })
 
       image.onload = () => {
-        // tslint:disable-next-line:no-string-literal
         image[IMAGE_LOAD_KEY] = true
       }
 
-      image.src = 'data:image/png;base64,' + btoa(imageRawData)
+      image.src = imageSrc
       this._imageCache[imageKey] = image
       return image
     }
 
-    return null
+    return undefined
   }
 
   destroy () {

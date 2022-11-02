@@ -61,10 +61,6 @@ module.exports = {
       filename: '22.html'
     }),
 
-    new FriendlyErrorsPlugin(),
-
-    new webpack.DefinePlugin({
-      'process.env.IS_WORKER_BUILD': false
-    })
+    new FriendlyErrorsPlugin()
   ]
 }

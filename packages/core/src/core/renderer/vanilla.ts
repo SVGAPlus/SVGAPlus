@@ -137,7 +137,7 @@ export {
  */
 function drawSprite (
   context: CanvasRenderingContext2D,
-  image: HTMLImageElement,
+  image: HTMLImageElement | undefined,
   sprite: IProtoSpriteEntity,
   frameIndex: number,
   lastShapeEntities: { [imageKey: string]: IProtoShapeEntity[] },
@@ -191,7 +191,6 @@ function drawSprite (
   const x = layout.x || 0
   const y = layout.y || 0
 
-  // tslint:disable-next-line:no-string-literal
   if (image && image[IMAGE_LOAD_KEY]) {
     TypeUtils.isNumber(width) && TypeUtils.isNumber(height)
       ? context.drawImage(image, x, y, width, height)
