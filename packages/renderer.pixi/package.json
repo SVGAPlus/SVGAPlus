@@ -3,14 +3,14 @@
   "version": "1.0.3",
   "description": "SVGAPlus pixi.js renderer.",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "files": [
     "dist/",
-    "types/",
     "index.d.ts",
     "README.md"
   ],
   "scripts": {
-    "build": "webpack --config ./build/webpack.build.js",
+    "build": "rollup -c --bundleConfigAsCjs",
     "prepublish": "npm run build"
   },
   "keywords": [
@@ -25,20 +25,18 @@
     "email": "chw644@hotmail.com"
   },
   "license": "MIT",
+  "peerDependencies": {
+    "pixi.js": "^7.0.0"
+  },
   "devDependencies": {
-    "@babel/core": "7.4.5",
-    "@babel/preset-env": "7.4.5",
-    "babel-loader": "8.0.6",
-    "cross-env": "6.0.3",
-    "css-loader": "2.1.1",
-    "friendly-errors-webpack-plugin": "1.7.0",
-    "html-webpack-plugin": "3.2.0",
-    "pixi.js": "^5.3.3",
-    "terser-webpack-plugin": "^4.1.0",
-    "ts-loader": "5.4.3",
-    "tslint": "5.20.1",
-    "typescript": "3.7.4",
-    "webpack": "4.41.4",
-    "webpack-cli": "3.3.10"
+    "@rollup/plugin-terser": "^0.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "eslint": "^8.26.0",
+    "pixi.js": "^7.0.2",
+    "rollup": "^3.2.5",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "typescript": "^4.8.4"
   }
 }

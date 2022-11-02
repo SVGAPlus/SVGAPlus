@@ -35,10 +35,7 @@ const config = {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components|test)/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
+          loader: 'babel-loader'
         }
       },
       {
@@ -65,11 +62,6 @@ const config = {
 
 if (isWorkerBuild) {
   config.output.filename = 'index.worker.js'
-}
-
-if (process.env.npm_config_report) {
-  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-  config.plugins.push(new BundleAnalyzerPlugin())
 }
 
 module.exports = config

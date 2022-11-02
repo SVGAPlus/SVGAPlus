@@ -14,7 +14,7 @@ class EventBus {
     }
   }
 
-  emit (...value: any) {
+  emit (...value: any[]) {
     this.callbacks.forEach(func => func(...value))
   }
 

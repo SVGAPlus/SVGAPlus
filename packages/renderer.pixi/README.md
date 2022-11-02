@@ -6,7 +6,7 @@ Just doing a few steps and you are gonna be on 🔥!
 
 ## Setup
 
-1. Install PIXI.js v5 to your project:
+1. Install PIXI.js v7 to your project:
 
 ```
 npm install pixi.js --save

@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const FriendlyErrorsPlugin = require('@soda/friendly-errors-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -8,7 +8,7 @@ module.exports = {
   entry: {
     index: './dev/index/index.ts',
     lottery: './dev/lottery/index.ts',
-    sprite22: './dev/22/index.ts',
+    sprite22: './dev/22/index.ts'
   },
 
   resolve: {
@@ -23,31 +23,7 @@ module.exports = {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                '@babel/preset-env', {
-                  useBuiltIns: 'entry',
-                  modules: 'auto',
-                  loose: false,
-                  corejs: {
-                    version: 3,
-                    proposals: true
-                  },
-                  targets: [
-                    "last 3 Chrome major versions",
-                    "last 2 Firefox major versions",
-                    "last 2 Safari major versions",
-                    "last 2 Edge major versions",
-                    "last 1 IE major versions",
-                    "last 3 ChromeAndroid major versions",
-                    "last 2 iOS major versions"
-                  ]
-                }
-              ]
-            ]
-          }
+          loader: 'babel-loader'
         }
       },
       {
@@ -59,15 +35,13 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: './',
-    compress: true,
     historyApiFallback: true,
     https: false,
     port: 5000,
-    quiet: true,
-    disableHostCheck: true,
-    host: '0.0.0.0'
+    static: ['static']
   },
+
+  stats: 'none',
 
   plugins: [
     new HtmlWebpackPlugin({
