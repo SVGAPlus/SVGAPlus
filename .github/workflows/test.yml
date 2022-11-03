@@ -25,6 +25,10 @@ jobs:
         working-directory: ./packages/core
         run: npm install
 
+      - name: Install dependencies for proto
+        working-directory: ./packages/proto
+        run: npm install
+
       - name: Install dependencies for pixi.renderer
         working-directory: ./packages/renderer.pixi
         run: npm install
@@ -35,4 +39,4 @@ jobs:
 
       - name: Run proto testing
         working-directory: ./packages/proto
-        run: npm install && npm test
+        run: npm test
