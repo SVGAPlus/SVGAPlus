@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   preset: 'ts-jest',
   verbose: true,
@@ -9,5 +11,8 @@ module.exports = {
   ],
   setupFiles: [
     './.jest/xhr.js'
-  ]
+  ],
+  moduleNameMapper: {
+    '@svgaplus/proto': path.resolve(__dirname, '../proto')
+  }
 }

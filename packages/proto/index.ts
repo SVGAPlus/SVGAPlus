@@ -1,12 +1,11 @@
 // @ts-ignore
 import Pbf from 'pbf'
 import { IProtoMovieEntity } from './types'
-// @ts-ignore
-import { MovieEntity } from './svga.js'
+import { MovieEntity } from './svga'
 
 function decodeMovieEntity (buffer: ArrayBuffer): IProtoMovieEntity {
   const pbf = new Pbf(buffer)
-  return MovieEntity.read(pbf) as IProtoMovieEntity
+  return MovieEntity.read(pbf, undefined) as IProtoMovieEntity
 }
 
 export {

@@ -1,6 +1,6 @@
 import pako from 'pako'
-import {decodeMovieEntity} from '@svgaplus/proto'
-import {IProtoMovieEntity} from '@svgaplus/proto/types'
+import { decodeMovieEntity } from '@svgaplus/proto'
+import { IProtoMovieEntity } from '@svgaplus/proto/types'
 
 abstract class SVGAParser {
   static async parse (svgaBuffer: ArrayBuffer): Promise<IProtoMovieEntity> {
