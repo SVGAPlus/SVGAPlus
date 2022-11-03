@@ -1,15 +1,16 @@
-import { PixiRenderer } from '../../../renderer.pixi/lib'
-import { SVGAPlus } from '../../src'
+import { PixiRenderer } from '@svgaplus/renderer.pixi'
+import { SVGAPlus } from '@svgaplus/core'
 import { randomNumber, sleep } from './utils'
+import { getElement } from '../../utils'
 
-const spriteList: { [key: string]: { url: string, element: string, svga: SVGAPlus } } = {
-  background: { url: '/background.svga', element: '#background', svga: null },
-  hex: { url: '/hex.svga', element: '#hex', svga: null },
-  explosion: { url: '/explosion.svga', element: '#explosion', svga: null },
-  sprite22: { url: '/22.svga', element: '#sprite-22', svga: null },
-  text22: { url: '/22-text.svga', element: '#text-22', svga: null },
-  sprite33: { url: '/33.svga', element: '#sprite-33', svga: null },
-  text33: { url: '/33-text.svga', element: '#text-33', svga: null }
+const spriteList: { [key: string]: { url: string, element: string, svga: SVGAPlus | undefined } } = {
+  background: { url: '/background.svga', element: '#background', svga: undefined },
+  hex: { url: '/hex.svga', element: '#hex', svga: undefined },
+  explosion: { url: '/explosion.svga', element: '#explosion', svga: undefined },
+  sprite22: { url: '/22.svga', element: '#sprite-22', svga: undefined },
+  text22: { url: '/22-text.svga', element: '#text-22', svga: undefined },
+  sprite33: { url: '/33.svga', element: '#sprite-33', svga: undefined },
+  text33: { url: '/33-text.svga', element: '#text-33', svga: undefined }
 }
 
 let playStatus: 'standby' | 'lottery22' | 'lottery33' = 'standby'
@@ -45,7 +46,7 @@ async function initSvga () {
     const svga = new SVGAPlus({
       element: document.querySelector(element) as HTMLCanvasElement,
       buffer,
-      renderer: usePixi ? PixiRenderer : null
+      renderer: usePixi ? PixiRenderer : undefined
     })
     item.svga = svga
     return svga
@@ -59,7 +60,7 @@ async function initSvga () {
 }
 
 function registerEvents () {
-  document.getElementById('action-area')
+  getElement('#action-area')
     .addEventListener('click', () => {
       if (!allowControl) {
         return
@@ -73,10 +74,11 @@ function registerEvents () {
 async function playStandby () {
   playStatus = 'standby'
 
-  spriteList.hex.svga.play()
+  const hexSprite = spriteList.hex.svga!
+  hexSprite.play()
 
-  const sprite22 = spriteList.sprite22.svga
-  const text22 = spriteList.text22.svga
+  const sprite22 = spriteList.sprite22.svga!
+  const text22 = spriteList.text22.svga!
 
   const tick22 = async () => {
     if (playStatus === 'standby') {
@@ -93,8 +95,8 @@ async function playStandby () {
   }
   tick22Text()
 
-  const sprite33 = spriteList.sprite33.svga
-  const text33 = spriteList.text33.svga
+  const sprite33 = spriteList.sprite33.svga!
+  const text33 = spriteList.text33.svga!
 
   const tick33 = async () => {
     if (playStatus === 'standby') {
@@ -115,9 +117,9 @@ async function playStandby () {
 async function playLottery22 () {
   playStatus = 'lottery22'
 
-  const sprite22 = spriteList.sprite22.svga
-  const explosion = spriteList.explosion.svga
-  const background = spriteList.background.svga
+  const sprite22 = spriteList.sprite22.svga!
+  const explosion = spriteList.explosion.svga!
+  const background = spriteList.background.svga!
 
   hexCanvas.classList.add('focus')
   sprite22Canvas.classList.add('focus')

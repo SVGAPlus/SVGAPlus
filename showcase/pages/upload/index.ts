@@ -1,12 +1,13 @@
-import { PixiRenderer } from '../../../renderer.pixi/lib'
-import { SVGAPlus } from '../../src'
+import { PixiRenderer } from '@svgaplus/renderer.pixi'
+import { SVGAPlus } from '@svgaplus/core'
+import {getElement} from "../../utils";
 
-let player: SVGAPlus = null
-let playerPixi: SVGAPlus = null
+let player: SVGAPlus | undefined = undefined
+let playerPixi: SVGAPlus | undefined = undefined
 
 const fileInput = document.getElementById('file-upload') as HTMLInputElement
 fileInput.addEventListener('change', async () => {
-  const file = fileInput.files[0]
+  const file = fileInput.files?.[0]
   if (!file) {
     return
   }
@@ -14,7 +15,7 @@ fileInput.addEventListener('change', async () => {
   const buffer = await new Promise<ArrayBuffer>(resolve => {
     const fileReader = new FileReader()
     fileReader.onloadend = (event: ProgressEvent<FileReader>) => {
-      const result = event.target.result as ArrayBuffer
+      const result = (event.target!).result as ArrayBuffer
       resolve(result)
     }
     fileReader.readAsArrayBuffer(file)
@@ -43,10 +44,10 @@ fileInput.addEventListener('change', async () => {
   player.play()
   playerPixi.play()
 
-  fileInput.value = null
+  fileInput.value = ''
 })
 
-const replyBtn = document.getElementById('replay-btn')
+const replyBtn = getElement('#replay-btn')
 replyBtn.addEventListener('click', () => {
   player?.playOnce()
   playerPixi?.playOnce()
