@@ -1,6 +1,6 @@
 import { PixiRenderer } from '@svgaplus/renderer.pixi'
 import { SVGAPlus } from '@svgaplus/core'
-import {getElement} from "../../utils";
+import { getElement } from '../../utils'
 
 const usePixi = window.location.href.includes('usepixi')
 const buffer = await SVGAPlus.loadSvgaFile('/22.svga')

@@ -1,4 +1,5 @@
 {
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -13,10 +14,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@svgaplus/core": ["../packages/core/src"],
-      "@svgaplus/renderer.pixi": ["../packages/renderer.pixi/lib"]
-    }
+    "skipLibCheck": true
   }
 }

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@svgaplus/core": ["./packages/core/src"],
+      "@svgaplus/core/types/*": ["./packages/core/types/*"],
+      "@svgaplus/proto": ["./packages/proto"],
+      "@svgaplus/proto/*": ["./packages/proto/*"],
+      "@svgaplus/renderer.pixi": ["./packages/renderer.pixi/lib"]
+    }
+  }
+}

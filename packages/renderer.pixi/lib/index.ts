@@ -3,8 +3,15 @@
  * @ LancerComet | # Carry Your World #
  * License: MIT
  */
-
+import {
+  IProtoFrameEntity,
+  IProtoMovieEntity,
+  IProtoShapeEntity,
+  IProtoShapeType,
+  IProtoTransform
+} from '@svgaplus/proto/types'
 import { BaseTexture, Container, Texture, Sprite, Application, Matrix } from 'pixi.js'
+
 import { drawEllipse, drawSvg, setFillStyle, setStrokeStyle } from '../../core/src/core/draw'
 import { ISVGAPlusRendererTickFrameParam } from '../../core/src/core/models/renderer'
 import { SVGAPlusRenderer } from '../../core/src/core/models/renderer'
@@ -16,13 +23,6 @@ import { ISvgCommand } from '../../core/src/core/svg/svg-command'
 import { SVGAUtils } from '../../core/src/core/utils'
 import { raf } from '../../core/src/core/utils/raf'
 import { TypeUtils } from '../../core/src/core/utils/type'
-import {
-  IProtoFrameEntity,
-  IProtoMovieEntity,
-  IProtoShapeEntity,
-  IProtoShapeType,
-  IProtoTransform
-} from '../../core/src/proto/models'
 
 const IS_SUPPORT_PATH_2D = SVGAUtils.isSupportPath2d()
 

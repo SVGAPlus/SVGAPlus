@@ -1,4 +1,4 @@
-import { IProtoMovieEntity } from '../../proto/models'
+import { IProtoMovieEntity } from '@svgaplus/proto/types'
 import { SVGAImageController } from '../modules/controller.image'
 import { SvgaPlayController } from '../modules/controller.play'
 import { EventBus } from '../modules/event-bus'

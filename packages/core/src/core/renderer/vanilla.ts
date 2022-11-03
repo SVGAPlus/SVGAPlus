@@ -2,7 +2,7 @@ import {
   IProtoMovieEntity,
   IProtoShapeEntity,
   IProtoSpriteEntity
-} from '../../proto/models'
+} from '@svgaplus/proto/types'
 import { IMAGE_LOAD_KEY } from '../config'
 import { drawShape } from '../draw'
 import { SVGAPlusRenderer } from '../models/renderer'

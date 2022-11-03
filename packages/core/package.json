@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack --config ./build/webpack.build.js",
-    "pb": "npx pbf ./src/proto/svga.proto > ./src/proto/svga.proto.js",
     "test": "jest"
   },
   "keywords": [
@@ -43,7 +42,6 @@
     "html-webpack-plugin": "^5.5.0",
     "jest": "^26.4.2",
     "jest-github-actions-reporter": "^1.0.2",
-    "pbf": "^3.2.1",
     "pixi-filters": "^5.0.0",
     "pixi.js": "^7.0.2",
     "terser-webpack-plugin": "^5.3.6",

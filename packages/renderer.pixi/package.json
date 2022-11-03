@@ -10,8 +10,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
-    "prepublish": "npm run build"
+    "build": "rollup -c --bundleConfigAsCjs"
   },
   "keywords": [
     "SVGA",

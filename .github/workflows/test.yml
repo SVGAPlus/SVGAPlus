@@ -32,3 +32,7 @@ jobs:
       - name: Run Core package testing
         working-directory: ./packages/core
         run: npm test
+
+      - name: Run proto testing
+        working-directory: ./packages/proto
+        run: npm install && npm test

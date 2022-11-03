@@ -9,9 +9,7 @@
     "email": "chw644@hotmail.com"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "vite"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
