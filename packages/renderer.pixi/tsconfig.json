@@ -15,6 +15,10 @@
       "es2016",
       "es2017",
       "es2018"
-    ]
+    ],
+    "paths": {
+      "@svgaplus/core": ["../core/src"],
+      "@svgaplus/core/types/*": ["../core/types/*"],
+    }
   }
 }
