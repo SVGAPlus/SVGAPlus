@@ -13,13 +13,15 @@ import {
 import { BaseTexture, Container, Texture, Sprite, Application, Matrix } from 'pixi.js'
 
 import { drawEllipse, drawSvg, setFillStyle, setStrokeStyle } from '../../core/src/core/draw'
-import { ISVGAPlusRendererTickFrameParam } from '../../core/src/core/models/renderer'
-import { SVGAPlusRenderer } from '../../core/src/core/models/renderer'
+import {
+  ISVGAPlusRendererParam,
+  ISVGAPlusRendererTickFrameParam,
+  SVGAPlusRenderer
+} from '../../core/src/core/models/renderer'
 import { SVGAImageController } from '../../core/src/core/modules/controller.image'
 import { SvgaPlayController } from '../../core/src/core/modules/controller.play'
 import { EventBus } from '../../core/src/core/modules/event-bus'
-import { svgPathToCommands } from '../../core/src/core/svg/svg-command'
-import { ISvgCommand } from '../../core/src/core/svg/svg-command'
+import { svgPathToCommands, ISvgCommand } from '../../core/src/core/svg/svg-command'
 import { SVGAUtils } from '../../core/src/core/utils'
 import { raf } from '../../core/src/core/utils/raf'
 import { TypeUtils } from '../../core/src/core/utils/type'
@@ -34,6 +36,7 @@ class PixiRenderer implements SVGAPlusRenderer {
   private _eventBus: EventBus = null
   private _fps = 0
   private _childrenMap = new Map()
+  private _isDestroyed = false
 
   private _pixiApp: Application = null
   private _pixiContainer: Container = null
@@ -46,10 +49,8 @@ class PixiRenderer implements SVGAPlusRenderer {
     return this._pixiContainer
   }
 
-  private _isDestroyed = false
-
-  // This object keeps the shape that is used in last frame.
-  // Some frames' type are "ShapeType.Keep". We'll get target shape from here when this kinda type of type was caught.
+  // This object keeps the shape that was used in last frame.
+  // Some frames' type are "ShapeType.Keep", and we're about to get the shape from here.
   private _lastShapes: { [imageKey: string]: IProtoShapeEntity[] } = {}
 
   // SVG Command cache pool.
@@ -194,7 +195,7 @@ class PixiRenderer implements SVGAPlusRenderer {
     )
     this._pixiContainer.addChild(pixiSprite)
     this._childrenMap.set(pixiSprite.name, pixiSprite)
-    this._pixiApp.render()  // render function must be called.
+    this._pixiApp.render() // render function must be called.
 
     // Destroy sprite in next tick in case of OOM.
     raf(() => {
@@ -297,7 +298,7 @@ class PixiRenderer implements SVGAPlusRenderer {
             loadedTextures[imageKey] = texture
           })
         )
-        loadingImageKey[imageKey] = 1  // Just to indicate this image is being loaded.
+        loadingImageKey[imageKey] = 1 // Just to indicate this image is being loaded.
       }
     }
 
@@ -317,7 +318,7 @@ class PixiRenderer implements SVGAPlusRenderer {
           // console.log('[SVGAPlus] This is a vector sprite:', spriteSvga)
         }
       }
-      this.tickFrame({ forceTick: true })  // This is used for drawing first frame.
+      this.tickFrame({ forceTick: true }) // This is used for drawing first frame.
     }).catch(error => {
       console.error('[SVGAPlus] Failed to load sprites:', error)
     })
@@ -353,14 +354,7 @@ class PixiRenderer implements SVGAPlusRenderer {
     this._isDestroyed = false
   }
 
-  constructor (param: {
-    canvas: HTMLCanvasElement,
-    movieEntity: IProtoMovieEntity,
-    imageController: SVGAImageController,
-    playController: SvgaPlayController,
-    eventBus: EventBus,
-    fps: number
-  }) {
+  constructor (param: ISVGAPlusRendererParam) {
     this._canvas = param.canvas
     this._movieEntity = param.movieEntity
     this._imageController = param.imageController

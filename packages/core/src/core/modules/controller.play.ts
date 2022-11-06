@@ -1,30 +1,30 @@
 class SvgaPlayController {
-  private _frame: number = 0
+  private _frame = 0
   get frame (): number {
     return this._frame
   }
 
-  private _isInPlay: boolean = false
+  private _isInPlay = false
   get isInPlay (): boolean {
     return this._isInPlay
   }
 
-  private _lastDrawFrame: number = 0
+  private _lastDrawFrame = 0
   get lastDrawFrame (): number {
     return this._lastDrawFrame
   }
 
-  private _isReversing: boolean = false
+  private _isReversing = false
   get isReversing (): boolean {
     return this._isReversing
   }
 
-  private _loopStartFrame: number = -1
+  private _loopStartFrame = -1
   get loopStartFrame (): number {
     return this._loopStartFrame
   }
 
-  private _loopEndFrame: number = -1
+  private _loopEndFrame = -1
   get loopEndFrame (): number {
     return this._loopEndFrame
   }
