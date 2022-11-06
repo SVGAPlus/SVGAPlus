@@ -24,7 +24,7 @@ class VanillaRenderer implements SVGAPlusRenderer {
   private _ticker: Ticker = null
   private _eventBus: EventBus = null
 
-  private _isDestroyed: boolean = false
+  private _isDestroyed = false
 
   // This object keeps the shape that is used in last frame.
   // Some frames' type are "ShapeType.Keep". We'll get target shape from here when this kinda type of type was caught.
@@ -154,7 +154,7 @@ function drawSprite (
     return
   }
 
-  context.save()  // Save original transform setup.
+  context.save() // Save original transform setup.
   context.globalAlpha = alpha
 
   if (transform) {
@@ -197,5 +197,5 @@ function drawSprite (
       : context.drawImage(image, x, y)
   }
 
-  context.restore()  // Restore transform to original.
+  context.restore() // Restore transform to original.
 }

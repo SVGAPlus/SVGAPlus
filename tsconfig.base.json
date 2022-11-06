@@ -5,8 +5,7 @@
       "@svgaplus/core/types/*": ["./packages/core/types/*"],
       "@svgaplus/proto": ["./packages/proto"],
       "@svgaplus/proto/*": ["./packages/proto/*"],
-      "@svgaplus/renderer.pixi": ["./packages/renderer.pixi/lib"],
-      "@svgaplus/renderer.three": ["./packages/renderer.three/lib"]
+      "@svgaplus/renderer.pixi": ["./packages/renderer.pixi/lib"]
     }
   }
 }
