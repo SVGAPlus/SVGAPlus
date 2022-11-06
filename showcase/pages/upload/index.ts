@@ -1,6 +1,6 @@
 import { PixiRenderer } from '@svgaplus/renderer.pixi'
 import { SVGAPlus } from '@svgaplus/core'
-import {getElement} from "../../utils";
+import { getElement } from '../../utils'
 
 let player: SVGAPlus | undefined = undefined
 let playerPixi: SVGAPlus | undefined = undefined

@@ -6,8 +6,8 @@ export default defineConfig({
     alias: {
       '@svgaplus/core': path.resolve(__dirname, '../packages/core/src/index.ts'),
       '@svgaplus/proto': path.resolve(__dirname, '../packages/proto'),
-      '@svgaplus/renderer.pixi': path.resolve(__dirname, '../packages/renderer.pixi/lib/index.ts')
+      '@svgaplus/renderer.pixi': path.resolve(__dirname, '../packages/renderer.pixi/lib/index.ts'),
+      '@svgaplus/renderer.three': path.resolve(__dirname, '../packages/renderer.three/lib/index.ts')
     }
   }
 })
-

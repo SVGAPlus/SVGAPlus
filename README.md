@@ -1,5 +1,7 @@
 # SVGAPlus
 
+[![npm version](https://badge.fury.io/js/@svgaplus%2Fcore.svg)](https://badge.fury.io/js/@svgaplus%2Fcore)
+[![npm version](https://badge.fury.io/js/@svgaplus%2Frenderer.pixi.svg)](https://badge.fury.io/js/@svgaplus%2Frenderer.pixi)
 [![SVGAPlus](https://github.com/SVGAPlus/SVGAPlus/workflows/Test/badge.svg)](https://github.com/SVGAPlus/SVGAPlus/actions)
 
 ![logo](https://static.lancercomet.com/lancercomet/misc/svgaplus-logo.png)

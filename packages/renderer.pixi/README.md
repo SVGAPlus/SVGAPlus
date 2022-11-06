@@ -1,5 +1,8 @@
 # SVGAPlus PixiRenderer
 
+[![npm version](https://badge.fury.io/js/@svgaplus%2Frenderer.pixi.svg)](https://badge.fury.io/js/@svgaplus%2Frenderer.pixi)
+[![SVGAPlus](https://github.com/SVGAPlus/SVGAPlus/workflows/Test/badge.svg)](https://github.com/SVGAPlus/SVGAPlus/actions)
+
 You are able to use PIXI.js to render SVGA graphics.
 
 Just doing a few steps and you are gonna be on 🔥!

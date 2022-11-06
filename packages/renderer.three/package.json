@@ -1,7 +1,7 @@
 {
-  "name": "@svgaplus/renderer.pixi",
-  "version": "2.0.2",
-  "description": "SVGAPlus pixi.js renderer.",
+  "name": "@svgaplus/renderer.three",
+  "version": "1.0.0",
+  "description": "SVGAPlus three.js renderer.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "files": [
@@ -17,16 +17,14 @@
     "SVGAPlayer",
     "SVGAPlus",
     "Renderer",
-    "PIXI.js"
+    "Three",
+    "Three.JS"
   ],
   "author": {
     "name": "LancerComet",
     "email": "chw644@hotmail.com"
   },
   "license": "MIT",
-  "peerDependencies": {
-    "pixi.js": "^7.0.0"
-  },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.1.0",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
@@ -34,9 +32,8 @@
     "eslint": "^8.27.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-n": "^15.4.0",
+    "eslint-plugin-n": "^15.5.0",
     "eslint-plugin-promise": "^6.1.1",
-    "pixi.js": "^7.0.2",
     "rollup": "^3.2.5",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-typescript2": "^0.34.1",
