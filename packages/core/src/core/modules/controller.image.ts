@@ -1,5 +1,5 @@
+import { IProtoMovieEntity } from '@svgaplus/proto/types'
 import { IMAGE_LOAD_KEY } from '../config'
-import { IProtoMovieEntity } from '../../proto/models'
 import { SVGAUtils } from '../utils'
 
 class SVGAImageController {

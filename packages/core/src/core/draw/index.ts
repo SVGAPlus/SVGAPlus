@@ -1,4 +1,4 @@
-import { IProtoLineCap, IProtoLineJoin, IProtoShapeEntity, IProtoShapeType } from '../../proto/models'
+import { IProtoLineCap, IProtoLineJoin, IProtoShapeEntity, IProtoShapeType } from '@svgaplus/proto/types'
 import { ISvgCommand, svgPathToCommands } from '../svg/svg-command'
 import { SVGAUtils } from '../utils'
 

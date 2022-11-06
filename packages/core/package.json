@@ -4,9 +4,7 @@
   "description": "Enhanced SVGA Player.",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config ./build/webpack.dev.js",
     "build": "webpack --config ./build/webpack.build.js",
-    "pb": "npx pbf ./src/proto/svga.proto > ./src/proto/svga.proto.js",
     "test": "jest"
   },
   "keywords": [
@@ -29,6 +27,7 @@
     "@babel/core": "^7.11.6",
     "@soda/friendly-errors-webpack-plugin": "^1.8.1",
     "@types/jest": "^26.0.14",
+    "@types/pako": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "babel-loader": "^8.1.0",
     "canvas": "^2.6.1",
@@ -53,5 +52,8 @@
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "pako": "^2.0.4"
   }
 }

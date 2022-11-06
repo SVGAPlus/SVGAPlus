@@ -17,4 +17,9 @@ Enhanced SVGA Player.
 ## Packages
 
  - core: SVGAPlus core components.
+ - proto: SVGA Protobuf files.
  - renderer.pixi: Pixi renderer for SVGAPlus.
+
+## Showcase
+
+Checkout the `showcase` folder to see how to use SVGAPlus. 

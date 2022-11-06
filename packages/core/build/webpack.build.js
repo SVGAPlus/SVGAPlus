@@ -18,7 +18,10 @@ const config = {
   },
 
   resolve: {
-    extensions: ['.js', '.ts']
+    extensions: ['.js', '.ts'],
+    alias: {
+      '@svgaplus/proto': path.resolve(__dirname, '../../proto')
+    }
   },
 
   optimization: {
