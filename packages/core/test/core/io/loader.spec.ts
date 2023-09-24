@@ -15,7 +15,7 @@ describe('loadSvgaFile testing.', () => {
       const filePath = path.join(__dirname, '../../assets', uri)
       const isFileExist = fs.existsSync(filePath)
       if (!isFileExist) {
-        res.writeHead(404, {'Content-Type': 'text/plain'})
+        res.writeHead(404, { 'Content-Type': 'text/plain' })
         res.write('404 Not Found\n')
         res.end()
         return
@@ -36,6 +36,16 @@ describe('loadSvgaFile testing.', () => {
     const fileUrl = `http://127.0.0.1:${port}/hex.svga`
     const buffer = await SVGAPlus.loadSvgaFile(fileUrl)
     expect(buffer.byteLength).toEqual(259685)
+  })
+
+  it('Should raise an exception when downloading failed.', async () => {
+    const fileUrl = `http://127.0.0.1:${port}/not-exist.svga`
+    try {
+      await SVGAPlus.loadSvgaFile(fileUrl)
+      expect(1).toBe(2) // This line will be ignored if everything goes well.
+    } catch (error) {
+      expect(1).toBe(1)
+    }
   })
 
   afterAll(() => {

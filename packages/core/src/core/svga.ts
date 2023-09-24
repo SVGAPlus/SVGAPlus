@@ -17,9 +17,15 @@ class SVGAPlus {
       xhr.open('GET', url, true)
       xhr.responseType = 'arraybuffer'
       xhr.onload = () => {
-        resolve(xhr.response as ArrayBuffer)
+        if (xhr.status >= 200 && xhr.status < 400) {
+          resolve(xhr.response as ArrayBuffer)
+        } else {
+          reject(new Error(`Failed with status: ${xhr.status}`))
+        }
       }
-      xhr.onerror = reject
+      xhr.onerror = () => {
+        reject(new Error(`Failed to load URL: ${url}`))
+      }
       xhr.send(null)
     })
   }
@@ -38,7 +44,7 @@ class SVGAPlus {
   }
 
   private readonly _canvas: HTMLCanvasElement = null
-  private _isDestroyed: boolean = false
+  private _isDestroyed = false
 
   get isInPlay () {
     return this._playController.isInPlay
@@ -115,7 +121,7 @@ class SVGAPlus {
       fps: this.fps
     })
 
-    renderer.tickFrame()  // Draw first frame.
+    renderer.tickFrame() // Draw first frame.
     this._renderer = renderer
   }
 
@@ -244,7 +250,7 @@ class SVGAPlus {
    * @param {number} [to=this.maxFrame] Stop frame index.
    * @return {Promise<void>}
    */
-  playOnce (from: number = 0, to: number = this.maxFrame): Promise<void> {
+  playOnce (from = 0, to: number = this.maxFrame): Promise<void> {
     return new Promise(async (resolve, reject) => {
       const isReverse = from > to
       if (isReverse) {
