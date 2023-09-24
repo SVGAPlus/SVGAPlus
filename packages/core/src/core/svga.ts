@@ -17,7 +17,7 @@ class SVGAPlus {
       xhr.open('GET', url, true)
       xhr.responseType = 'arraybuffer'
       xhr.onload = () => {
-        if (xhr.status >= 200 && xhr.status < 300) {
+        if (xhr.status >= 200 && xhr.status < 400) {
           resolve(xhr.response as ArrayBuffer)
         } else {
           reject(new Error(`Failed with status: ${xhr.status}`))
